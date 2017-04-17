@@ -1,0 +1,78 @@
+<include file="Layout:header" />
+    <div class="main-content">
+              <div class="page-content">
+                <div class="row">
+                  <div class="page-content box">
+                  	<div class="box-title margin_bot_20">
+                      <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                      <form method="post" action="__URL__/action">
+                        <div class="span10">
+                           <table border="1"  bordercolor="#000000" width="300" height="50" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td>文章标题</td>
+                                <td>{$gaojian.title}</td>
+                              </tr>
+                              <tr>
+                                <td>文章内容</td>
+                                <td>{$gaojian.content}</td>
+                              </tr>
+                          </table>
+                        </div><br/>
+                      	<div class="span10">
+                            <dl class="zc_dl">
+                              <dt>选择媒体类别：</dt>
+                              <dd>
+                                <span style="color:red">*</span>&nbsp;
+                                <select name="type" style="width:165px;" id="mediaType">
+                                    <option  value="1">财经</option>
+                                    <option  value="2">科技</option>
+                                    <option  value="3">健康</option>
+                                    <option  value="4">娱乐</option>
+                                    <option  value="5">新闻</option>
+                                    <option  value="6">综合</option>
+                                    <option  value="7">地方</option>
+                                </select>
+                              </dd><br/>
+                              <script type="text/javascript">
+                                $('#mediaType').change(function(){
+                                  var typeval = $(this).val();
+                                  console.log(typeval);
+                                  $.ajax({
+                                    url: "{:U('Story/ajaxType')}",
+                                    type: "POST",
+                                    data: {'type':typeval},
+                                    success: function(data){
+                                        var str = '';
+                                        for(i in data){
+                                          str = str+"&nbsp&nbsp&nbsp<span style='color:red'>*</span>"+"<input type='checkbox' name='sid[]' value='"+data[i].id+"' />"+data[i].media+"<span>&nbsp价格￥"+data[i].account+"</span>";
+                                        }
+                                        $('#str').html(str);
+                                    },
+                                    dataType: "JSON",
+                                  });
+                                }); 
+                              </script>
+                              <input type="hidden" name="id" value={$gaojian.id} />
+                              <br/>
+                              <dd id="str">
+                                <foreach name="media" item="vo">
+                                <span style="color:red">*</span>&nbsp;
+                                <input type="checkbox" name="sid[]" value="{$vo['id']}" class="zc_btn" />{$vo.media}&nbsp&nbsp价格￥<span>{$vo.account}</span>
+                                </foreach>
+                              </dd><br/>
+                              <dd>
+                                <span style="color:red">*</span>&nbsp;
+                                <input type="submit" class="zc_btn" value="发布"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </dd>
+                              
+                            </dl>
+                          </div>
+                          <form/>
+                    </div>
+
+                <!--/.box-->
+              </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+        </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
+<include file="Layout:footer" />

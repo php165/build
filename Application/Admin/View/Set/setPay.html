@@ -1,0 +1,66 @@
+<include file="Layout:header"/>
+        <div class="main-content">
+          <div class="breadcrumbs">
+            <ul>
+              <li> <a href="__URL__/setBase">基本设置 </a></li>
+              <li> <a href="__URL__/setDeploy">系统配置 </a></li>
+              <li> <a href="__URL__/setRank">等级设置 </a></li>
+
+              <!-- <li> <a href="__URL__/setCash">提现设置 </a></li> -->
+
+              <li class="active"> <a href="__URL__/setPay">支付方式 </a></li>
+            </ul>
+            <!-- .breadcrumb -->
+          </div>
+          <div class="page-content">
+            <div class="row">
+              <div class="page-content box">
+              	<div class="box-title margin_bot_20">
+                  	<div class="span10">
+                   		<h3><i class="icon-cogs"></i>支付方式 </h3>
+                  	</div>
+                </div>
+               <!--  <div class="margin_bot_20"> 
+                  <a href="__URL__/setPayAdd" class="btn btn-primary btn-sm"><i class="icon-plus"></i>添加支付方式</a> 
+                </div> -->
+                <table class="table table_img table-striped table-bordered table-hover">
+                    <thead>
+                      <tr><th width="150px">类型</th>
+                        <th width="150px">状态</th>
+                        <th width="150px">操作</th>
+                     </tr>
+                   </thead>
+                     <tbody>
+                      <foreach name="list" item="vo">
+                        <tr>
+                            <td>
+                                <switch name="vo.name">
+                                  <case value="weixin">微信</case>
+                                  <case value="alipay">支付宝</case>
+                                  <case value="baidu">百度钱包</case>
+                                  <default/>default
+                                </switch>  
+                            </td>
+                            <td>
+                              <switch name="vo.status">
+                                  <case value="1">已开启</case>
+                                  <case value="0">已关闭</case>
+                                  <default/>default
+                                </switch>
+                            </td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <a class="green" href="__URL__/setPayEdit/id/{$vo.id}"> <i class="icon-pencil bigger-130"></i>&nbsp;编辑 </a>
+                                    <!-- <a class="red detail" href="__URL__/setPayDel/id/{$vo.id}"> <i class="icon-trash bigger-130"></i>&nbsp;删除 </a> -->
+                                </div>
+                            </td>
+                        </tr>
+                      </foreach>
+                      </tbody> 
+                 </table>
+              </div>
+            </div>
+            <!--/.box-->
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+<include file="Layout:footer"/>

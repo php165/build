@@ -1,0 +1,42 @@
+<include file="Layout:header" />
+        <div class="main-content">
+          <div class="page-content">
+            <div class="row">
+              <div class="page-content box">
+              	<div class="box-title margin_bot_20">
+                  	<div class="span10">
+                      <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                <form method="post" action="__URL__/doPay/">     
+                <dl class="zc_dl">
+                  <dt>尊敬的{$vo.vip_name}用户：</dt><br/>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;请选择充值金额<br/>
+                    <input type="radio" name="account" value="0.01" />￥0.01&nbsp;
+                    <input type="radio" name="account" value="50" />￥50.00&nbsp;
+                    <input type="radio" name="account" value="100"/>￥100.00&nbsp;
+                    <input type="radio" name="account" value="300"/>￥300.00&nbsp;
+                    <input type="radio" name="account" value="500"/>￥500.00&nbsp;
+                    <input type="hidden" name="id" value="{$vo.id}">
+                    <input type="hidden" name="name" value="{$vo.vip_name}">
+                  </dd><br/>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;请选择支付方式<br/>
+                    <!-- <input type="radio" name="pay" value="微信支付" />微信支付&nbsp; -->
+                    <input type="radio" name="pay" value="支付宝支付"/>支付宝支付&nbsp;
+                    <!-- <input type="radio" name="pay" value="储蓄卡支付"/>储蓄卡支付&nbsp; -->
+                    <!-- <input type="radio" name="pay" value="信用卡支付"/>信用卡支付&nbsp; -->
+                  </dd>
+                </dl><br/>
+                
+                <dd>
+                  <span style="color:red">*</span>&nbsp;
+                  <input type="submit" class="zc_btn" value="下一步"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="reset" class="zc_btn" value="重置"  />
+                </dd>
+              </div>
+              <form/>
+            </div>
+            <!--/.box-->
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+<include file="Layout:footer" />

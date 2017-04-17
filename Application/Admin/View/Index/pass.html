@@ -1,0 +1,37 @@
+<include file="Layout:header" />
+        <div class="main-content">
+          <div class="page-content">
+            <div class="row">
+              <div class="page-content box">
+              	<div class="box-title margin_bot_20">
+                  <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                  	<div class="span10">
+                <form method="post" action="__URL__/updatePass/">     
+                <dl class="zc_dl">
+                  <dt>尊敬的{$admin}用户：</dt>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;请输入初始密码:
+                    <input type="text" name="oldpass" value="" class="zc_btn" placeholder="请输入初始密码" />
+                  </dd><br/>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;请&nbsp输&nbsp入&nbsp新&nbsp密&nbsp码:
+                    <input type="text" name="newpass" value="" class="zc_btn" placeholder="请输入新密码" />
+                  </dd><br/>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;请再次输入新密码:
+                    <input type="text" name="repass" value="" class="zc_btn" placeholder="请再次输入新密码" />
+                  </dd><br/>
+                </dl>
+                
+                <dd>
+                  <span style="color:red">*</span>&nbsp;
+                  <input type="submit" class="zc_btn" value="提交"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="reset" class="zc_btn" value="重置"  />
+                </dd>
+              </div>
+              <form/>
+            </div>
+            <!--/.box-->
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+<include file="Layout:footer" />

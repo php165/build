@@ -1,0 +1,59 @@
+/* CSS Document */
+body{ font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif}
+ul, li, p, dl, dt, dd, input, h1, h2, h3, h4, h5, h6, img, ol, button, table, tr, td, select, option, textarea, div, span,i { margin: 0; padding: 0;  list-style: none; font-style:normal;font-family: "微软雅黑" }
+.red {color: #f00!important;}
+.box .box-title{border-bottom: 1px solid #ddd;padding: 7px 0 7px 10px;margin-top: 0px; overflow: hidden;}
+.box .box-title h3{float: left;margin: 3px 0 3px 0;line-height: 24px;font-weight: 400;color: #444;font-size: 20px; font-family: Microsoft YaHei}
+.box .box-title h3 i{margin: 0 10px 0 5px;vertical-align: middle;}
+.btn{ border-radius:4px}
+.breadcrumbs ul>li{margin-bottom: -1px; float:left;  font-size: 14px;  }
+.breadcrumbs ul>li>a{ color: #666; padding: 0 10px; display: block;}
+.breadcrumbs ul>li>a:hover{ text-decoration: none;}
+.breadcrumbs ul>li.active>a{ background: #fff}
+.indexBox .box-title{ border-bottom: none; padding: 0; margin-bottom: 10px;}
+.indexBox .box-title .span10 h3{ font-size: 16px;}
+.indexK li{ width: 24%; height: 110px; float: left; margin-left:1%; color: #fff; text-align: center;  padding-top: 25px;}
+.indexKLeft{font-size: 55px; position: relative; width: 55px !important; height: 55px; line-height: 55px; text-align: center; display: inline-block;}
+.indexKLeft>i{ position: absolute; left: 0; top: 0; font-size: 24px; width: 55px; height: 55px; line-height: 55px; }
+.indexKRight{ display: inline-block; font-size: 15px; text-align: left;  margin-left: 6px;}
+.indexKRight b{ display: block; font-size: 27px;  height: 32px;  margin-bottom: 5px;}
+.blueBg{ background: #27a9e3 !important}
+.blueBg .indexKLeft>i{ color: #27a9e3}
+.greenBg{ background: #28b779 !important}
+.greenBg .indexKLeft>i{ color: #28b779}
+.redBg{ background: #fd5f56 !important}
+.redBg .indexKLeft>i{ color: #fd5f56}
+.yellowBg{ background: #ffb748 !important}
+.yellowBg .indexKLeft>i{ color: #ffb748}
+.indexK{ overflow: hidden; width: 100%; margin-bottom: 12px;}
+.indexTable{ width: 100%; overflow: hidden;margin-bottom: 12px;}
+.indexTableLeft,.indexTableRight{ width:49%; margin-left: 1%; overflow: hidden; float: left;}
+.indexTableTit{ border: 1px solid #cacaca; height: 44px; line-height: 44px; width: 100%; font-size: 15px;padding-left: 22px; color: #3e3e3e;  border-bottom: none;  background: #eee;}
+.indexTableTit i{ margin-right: 6px; font-size:24px; float: left; height: 42px; line-height: 42px;}
+.indexTableTit span{ float: left;}
+.indexTable table{ width: 100%; background:#cacaca; overflow: hidden;border-spacing:0 1px;border-collapse: inherit;  border: 1px solid #cacaca; border-top: none; border-bottom: none;}
+.indexTable tr{ background: #fff;}
+.indexTable td,.indexTable th{padding: 10px 0; text-align: center;}
+.table tr,.table th{ text-align: center;}
+.margin_bot_20{ margin-bottom: 20px}
+.form-horizontal .control-label {width: 140px;text-align: left;font-weight: 700; float: left;}
+.form-group{ overflow: hidden;}
+.btnBox{ overflow: hidden; margin-left: 140px;  padding-top: 20px;}
+.table_tr>*{ height: 0 !important;padding: 0 !important;}
+#table_hy::-webkit-scrollbar {width: 0;}
+.tableHead{ width: 100%;}
+table{border-collapse: collapse;table-layout: fixed;}
+th,td{word-break: break-all;}
+.tableHead table,#table_hy table{ width:100%;margin-bottom:0;}
+#table_hy{ width: 100%;overflow: auto;}
+.tableHead th,#table_hy table tr td {overflow: hidden;word-break: break-all;}
+.modal-sm {width: 300px;}
+#img img{ width:100%}
+.detail_header {padding: 20px 20px 0 20px;}
+.modal-body{  text-align: right;}
+input[type=radio].ace+.lbl::before{  margin-right: 8px;}
+.form-horizontal .input-large{vertical-align: middle;}
+.help-inline {padding-left: 8px;}
+.mar_right{ margin-right: 10px;}
+.heightFocs{ height: 25px; line-height: 25px;padding-left: 0;}
+bgNum
