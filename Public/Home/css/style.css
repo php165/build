@@ -1,0 +1,325 @@
+
+/*滚动开始*/
+.slideBox{
+    width:100%;
+    height: 710px;
+    overflow:hidden;
+    position:relative;
+}
+
+.slideBox .bd{
+    position:relative;
+    width: 100%;
+    z-index:0;   }
+.slideBox .bd li{
+    zoom:1;
+    vertical-align:middle;
+}
+.slideBox .bd img{
+    text-align: center;
+    width:100%;
+    height: 710px;
+    display:inline;
+}
+/*滚动结束*/
+.main{
+    width: 100%;
+    position: relative;
+
+}
+
+
+.index_main1{
+    margin-top: -84px;
+    background: url("../images/main_back1.png") no-repeat  center;width:100%;height:1070px;;
+}
+/*导航开始*/
+.nav{
+    width: 140px;
+    position: absolute;
+    top: 0;
+    left: 16%;
+    z-index: 200;
+}
+.nav ul{
+    background: url("../images/navback.png") no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    padding-top: 225px;
+    padding-bottom: 120px;
+}
+.nav ul li{
+    padding: 8% 0;
+}
+.nav ul li:hover{
+    background: url("../images/liback.png") no-repeat bottom center;
+}
+.nav ul li:hover a{
+    color: #ffc900!important;
+}
+.nav img{
+    position: absolute;
+    top: 135px;
+    width: 250px;
+    height: 95px;
+    z-index: 4;
+}
+.nav a{
+    font-size: 18px;
+    color: #ffffff;
+}
+.navon{
+    background: url("../images/liback.png") no-repeat bottom center;
+}
+.navon a{
+    color: #ffc900!important;
+}
+/*导航结束*/
+
+/*视频开始*/
+#youkuplayer{
+    position: relative;
+    width: 890px;
+    height: 515px;
+    margin: 0 auto;
+    z-index: 5;
+    padding-top: 418px;
+}
+#youkuplayer img{
+    width: 890px;
+    height: 515px;
+}
+.qiehuan{
+    width: 895px;
+    height: 102px;
+    margin-left: -5px;
+}
+.qiehuan li{
+    cursor: pointer;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.qiehuan li img{
+    width: 174px;
+    height: 102px;
+}
+.video_ul{
+    width: 890px;
+    margin: 0 auto;
+}
+#youkuplayer span{
+    width: 135px;
+    height: 135px;
+    margin-left: -67px;
+    background: url("../images/play.png") no-repeat center;
+    background-size: cover;
+    position: absolute;
+    display: inline-block;
+    bottom:20%;
+    left: 50%;
+    cursor: pointer;
+}
+/*视频结束*/
+/*main2开始*/
+.index_main2{
+    background: url("../images/main_back2.png") no-repeat
+    center;width:100%;height:508px;
+}
+.main2{
+    overflow: hidden;
+    width: 1200px;
+    margin: 0 auto;
+}
+.main2 > img{
+    width: 600px;
+    height: 508px;
+}
+.main2 .main2_right{
+    margin-left: 676px;
+
+}
+.main2 .main2_right h3{
+    padding-top: 170px;
+}
+.main2 .main2_right h3 img{
+    width: 104px;
+    height: 34px;
+}
+.main2 .main2_right p{
+    padding-top: 20px;
+    font-size: 16px;
+    width: 450px;
+    padding-left: 10px;
+    line-height: 28px;
+}
+/*main2结束*/
+/*main3开始*/
+.index_main3{
+    background: url("../images/main3back.png") no-repeat
+    center center;
+    width:100%;
+    height:1780px;
+}
+.main3_div{
+    padding-top: 50px;
+    width: 1206px;
+    margin: 0 auto;
+}
+.main3_div2{
+    padding-bottom: 6px;
+    margin-left: -20px;
+    overflow: hidden;
+}
+.main3_div .main3_item{
+    float: left;
+    margin-left: 20px;
+    width: 590px;
+    -moz-box-shadow:2px 2px 4px #dddddd;
+    -webkit-box-shadow:2px 2px 4px #dddddd;
+    box-shadow:2px 2px 4px #dddddd;
+}
+.main3_div .main3_item p{
+    overflow: hidden;
+}
+.main3_div .main3_item p img  {
+    width: 590px;
+    height: 390px;
+    overflow: hidden;
+}
+.main3_text span{
+    text-align: left;
+    display: inline-block;
+    height: 72px;
+    line-height: 72px;
+    padding-left: 18px;
+}
+.main3_text{
+    width: 100%;
+    height: 72px;
+    background-color: #FFFFFF;
+}
+.main3_text > a{
+    margin-top: 17px;
+    text-align: center;
+    width: 92px;
+    height: 38px;
+    line-height: 38px;
+    padding-right: 18px;
+    color: #fefefe;
+    background: url("../images/gd.png") no-repeat;
+}
+.fangda{
+    cursor: pointer;
+    -webkit-transition:all 0.8s;
+    -moz-transition:all 0.8s;
+    -o-transition:all 0.8s;
+    -ms-transition:all 0.8s;
+}
+.fangda:hover{
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+}
+
+.main3_div3{
+
+    margin-left: -20px;
+    overflow: hidden;
+}
+.main3_div3 .main3_item3{
+    padding-top: 20px;
+    float: left;
+    width: 386px;
+    margin-left: 20px;
+
+}
+.main3_item3 >p >img{
+    width: 386px;
+    height: 238px;
+}
+.main3_item3 p{
+    overflow: hidden;
+}
+
+.main_ql{
+    padding-left: 90px;
+    padding-top: 150px;
+}
+.main_ql h3 img{
+    width: 75px;
+    height: 40px;
+}
+.main_ql p{
+    padding-top: 20px;
+    font-size: 16px;
+    width: 450px;
+    padding-left: 10px;
+    line-height: 28px;
+}
+.marbom110{
+    padding-bottom: 110px;
+}
+.index_main4{
+    width: 100%;
+    background: url("../images/back.jpg");
+}
+
+/*main3结束*/
+.footer{
+    background: url("../images/footback.png") no-repeat center;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 570px;
+
+}
+.footer img{
+    padding-top: 196px;
+    width: 240px;
+    height: 216px;
+    margin: 0 auto;
+    display: block;
+}
+
+.footer .footdiv{
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.footer .footdiv dl dt{
+    font-size: 16px;
+    color: #999999;
+    padding-bottom: 15px;
+}
+.footer .footdiv .wid170 dt{
+    padding-left: 14px;
+}
+.footer .footdiv .wid170 dt{
+
+}
+.wid170{
+    width: 170px;
+}
+.footer .footdiv dl a{
+    color: #999999;
+}
+.footer .footdiv .wid170 dd{
+    padding: 5px 14px;
+    float: left;
+}
+.win240{
+    width: 280px;
+    padding-left: 5px;
+}
+.footer .footdiv .win240 dd{
+    padding: 5px 1px;
+    float: left;
+}
+.footdiv ul li{
+    padding: 6px 20px;
+}
+.footdiv ul li a{
+    color: #999999;
+    font-size: 16px;
+}
