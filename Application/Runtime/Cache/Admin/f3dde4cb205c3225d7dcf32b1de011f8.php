@@ -111,7 +111,7 @@
                     </a>
                     <ul class="submenu">
                         <li> <a href="<?php echo U('Protect/index');?>"> <i class="icon-double-angle-right"></i> 古建保护列表 </a> </li>
-                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护 </a> </li>
+                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护文章 </a> </li>
                     </ul>
                 </li>
                 <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
@@ -200,120 +200,86 @@
 
    
         <div class="main-content">
-            <div class="page-content">
-                <div class="row indexBox">
+          <div class="page-content">
+            <div class="row">
               <div class="page-content box">
-                <div class="box-title margin_bot_20">
-                    <div class="span10">
-                        <h3 class="red">
-                            <i class="icon-volume-down icon-2x green"></i>
-                            欢迎您！<i class="blue"><?php echo ($user); ?></i>
-                        </h3>
-
-
-                    </div>
+              	<div class="box-title margin_bot_20">
+                  	<div class="span10">
+                   		<h3><i class="icon-cogs"></i>古建百科管理 </h3>
+                  	</div>
                 </div>
-                <ul class="indexK">
-                    <li class="blueBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-calendar"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["account"]); ?></b>
-                            当日充值金额
-                        </span>
-                    </li>
-                    <li class="greenBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-bar-chart"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["pay"]); ?></b>
-                            当日交易金额
-                        </span>
-                    </li>
-                    <li class="redBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-group"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["vip"]); ?></b>
-                            当日新增会员数
-                        </span>
-                    </li>
-                    <li class="yellowBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-glass"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["payvip"]); ?></b>
-                            当日激活数
-                        </span>
-                    </li>
+                  <form class="form-horizontal" action="/commpany/build/index.php/Admin/Cyclopedia/index" method="get">
+                      <div class="form-group">
+                          <label class="control-label"  style="padding-top:0; margin-right:10px;">
+                              <select name="searchtype" id="searchtype" class="input-medium">
+                                  <option value="0">--选择搜索类型--</option>
+
+                                  <option <?php if($search == 'title'): ?>selected="selected" <?php else: endif; ?> value="title">古建百科标题</option>
+                                  <option <?php if($search == 'type'): ?>selected="selected" <?php else: endif; ?> value="type">栏目</option>
+
+                              </select>
+                          </label>
+                          <div class="controls pull-left">
+                              <input type="text" class="input-medium" name="content" value="<?php echo ($content); ?>">
+                              <button type="submit" class="btn btn-sm btn-primary">搜索</button>
+                          </div>
+                      </div>
+                  </form>
+                <div class="tableHead">
+                    <table class="table table_img table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;">ID</th>
+                                <th style="width:5%;">标题</th>
+                                <th style="width:5%;">栏目</th>
+                                <th style="width:5%;">发稿人</th>
+                                <th style="width:5%;">添加时间</th>
+                                <th style="width:5%;">状态</th>
+                                <th style="width:5%;">操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="table_hy">
+                    <table class="table table_img table-striped table-bordered  table-hover">
+                         <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
+                          <td><?php echo ($vo["id"]); ?></td>
+                          <td><?php echo ($vo["title"]); ?></td>
+                          <td><?php echo ($vo["type"]); ?></td>
+                          <td><?php echo ($vo["username"]); ?></td>
+                          <td><?php echo ($vo["addtime"]); ?></td>
+                          <td>
+                              <?php switch($vo["status"]): case "1": ?>已启用<?php break;?>
+                                  <?php case "0": ?>未启用<?php break;?>
+                                  <?php default: endswitch;?>
+                          </td>
+                          <td class="green information">
+                            <a href="/commpany/build/index.php/Admin/Cyclopedia/look/id/<?php echo ($vo["id"]); ?>" class="green cancel">查看</a>
+                            <a href="/commpany/build/index.php/Admin/Cyclopedia/status/id/<?php echo ($vo["id"]); ?>" class="green cancel">
+                              <?php if(($vo["status"] == 0) ): ?>启用
+                              <?php else: ?>禁用<?php endif; ?>
+                            </a>
+                            <a href="/commpany/build/index.php/Admin/Cyclopedia/edit/id/<?php echo ($vo["id"]); ?>" class="green cancel">编辑</a>
+                            <a href="/commpany/build/index.php/Admin/Cyclopedia/del/id/<?php echo ($vo["id"]); ?>" class="green cancel">删除</a>
+                          </td>
+                        </tr><?php endforeach; endif; ?>
+                    </table>
+                </div> 
+           
+                <ul class="pagination pull-right" style="margin-top:20px; margin-bottom:0;">
+                    <?php echo ($url); ?>
+                    <!-- <li class="disabled"><a href="#">«</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li> -->
                 </ul>
-                <div class="indexTable">
-                    <div class="indexTableRight">
-                        <h4 class="indexTableTit">
-                            <i class="icon-reorder blue"></i>
-                            <span>已付款订单列表</span>
-                        </h4>
-                        <table>
-                            <thead>
-                            <tr><th width="90px">用户名</th>
-                                <th width="120px">订单号</th>
-                                <th width="100px">时间</th>
-                                <th width="60px">总价</th>
-                                <th width="100px">类型</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if(is_array($res)): foreach($res as $key=>$vo): ?><tr>
-                                <td><?php echo ($vo['name']); ?></td>
-                                <td><?php echo ($vo['order']); ?></td>
-                                <td><?php echo ($vo['add_time']); ?></td>
-                                <td><?php echo ($vo['account']); ?></td>
-                                <td><?php echo ($vo['project']); ?></td>
-                            </tr><?php endforeach; endif; ?>
-                        </tbody>
-                        </table>
-                    </div>
-                    <div class="indexTableLeft">
-                        <h4 class="indexTableTit">
-                            <i class="icon-reorder blue"></i>
-                            <span>新加入会员列表</span>
-                        </h4>
-                        <table>
-                            <thead>
-                                <tr><th width="60px">会员ID</th>
-                                <th width="60px">会员名</th>
-                                <th width="100px">时间</th>
-                                <th width="60px">激活状态</th>
-                                <th width="80px">余额</th>
-                                <th width="60px">公司名称</th>
-                            </tr>
-                        </thead>
-                            <tbody>
-                                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><tr>
-                                    <td><?php echo ($vo["id"]); ?></td>
-                                    <td><?php echo ($vo["vip_name"]); ?></td>
-                                    <td><?php echo ($vo['add_time']); ?></td>
-                                    <td>
-                                        <?php switch($vo["status"]): case "1": ?><span style="color:red">*</span>&nbsp;已激活<?php break;?>
-                                            <?php case "0": ?>未激活<?php break;?>
-                                            <?php default: endswitch;?>
-                                    </td>
-                                    <td>￥<?php echo ($vo["account"]); ?></td>
-                                    <td><?php echo ($vo["company"]); ?></td>
-                                </tr><?php endforeach; endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
               </div>
             </div>
-                <!--/.box-->
-            </div>
-       <!-- /.page-content -->
+            <!--/.box-->
+          </div><!-- /.page-content -->
         </div><!-- /.main-content -->
  </div><!-- /.main-container-inner -->
 </div><!-- /.main-container -->

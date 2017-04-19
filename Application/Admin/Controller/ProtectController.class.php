@@ -3,12 +3,11 @@ namespace Admin\Controller;
 use Think\Controller;
 use Think\Page;
 use Think\Upload;
-class NewsController extends CommonController {
-	//加载稿件主页
+class ProtectController extends CommonController {
 	public function index(){
-		//实例化news信息操作对象
+		//实例化protect信息操作对象
 		// dump($_SESSION);
-		$mod = M("news");
+		$mod = M("protect");
 		// 设置查询
 		$search = empty($_GET['searchtype']) ? '' : $_GET['searchtype'];
 		//分页
@@ -35,30 +34,12 @@ class NewsController extends CommonController {
 	
 	//加载稿件添加页
 	public function add(){
-		//获得新闻类型
-		$mod = M('news_type');
-		$res = $mod -> select();
-		$this -> assign("res",$res);
 		$this -> display("add");
 	}
 
 	//添加新闻
 	public function insert(){
 		// dump($_POST);dump($_FILES);die;
-		//如果有图片的话处理图片
-		if($_POST['type'] == "考古发现"){
-		    $upload = new \Think\Upload();// 实例化上传类
-		    $upload->maxSize   =     3145728 ;// 设置附件上传大小
-		    $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-		    $upload->rootPath  =     './Public'; // 设置附件上传根目录
-		    $upload->savePath  =     './Uploads/'; // 设置附件上传（子）目录
-		    // 上传文件 
-		    $info   =   $upload->upload();
-		    if(!$info) {// 上传错误提示错误信息
-		        $this->error($upload->getError());
-		    }
-		    $_POST['mastermap'] = ltrim($info['mastermap']['savepath'],'.').$info['mastermap']['savename'];
-		}
 		//获取添加时间
 		$_POST['addtime'] = date("Y-m-d");
 		//验证用户提交的信息
@@ -66,12 +47,8 @@ class NewsController extends CommonController {
 			array('title','require','标题必须填写！'), 
 			array('content','require','新闻内容必须填写！'), 
 			);
-		//判断新闻类型是否选择
-		if(empty($_POST['type'])){
-			$this -> error('新闻类型必须选择，请选择');
-		}
-		//实例化news信息操作对象
-		$mod = M('news');
+		//实例化protect信息操作对象
+		$mod = M('protect');
 		//添加数据
 		if(!$mod -> validate($rules) -> create()){
 			//如果创建失败，表示验证没有成功
@@ -79,34 +56,30 @@ class NewsController extends CommonController {
 		}else{
 			$res = $mod -> add($_POST);
 			if($res){
-				$this -> success('恭喜添加新闻成功',U("News/index"));
+				$this -> success('恭喜添加古建保护文章成功',U("Protect/index"));
 
 			}else{
-				$this -> error('抱歉添加新闻失败');
+				$this -> error('抱歉添加建保护文章失败');
 			}
 		}
 	}
 
 	//加载编辑表单
 	public function edit(){
-		//实例化news信息操作对象
-		$mod = M("news");
+		//实例化protect信息操作对象
+		$mod = M("protect");
 		//判断用户是否有权限
 		$this -> sta();
 		$id = intval(I('id'));
 		$res = $mod -> find($id);
-		//判断新闻是否已经启用
+		//判断文章是否已经启用
 		if($res['status'] == 1){
-			$this -> error('该新闻已启用，请禁用后再编辑');
+			$this -> error('该文章已启用，请禁用后再编辑');
 		}
-		//判断新闻归属
+		//判断文章归属
 		if($res['username'] != session('user')['username']){
 			$this -> error('抱歉您没有权限');
 		}
-		//加载类别
-		$type = M('news_type');
-		$list = $type -> select();
-		$this -> assign('list',$list);
 		//加载要修改的信息
 		$this -> assign("res",$res);
 		//加载模板
@@ -115,34 +88,15 @@ class NewsController extends CommonController {
 
 	//执行编辑稿件
 	public function update(){
-		//实例化news信息的操作对象
+		//实例化protect信息的操作对象
 		// dump($_POST);die;
-		//如果有图片的话处理图片
-		if($_POST['type'] == "考古发现"){
-		    $upload = new \Think\Upload();// 实例化上传类
-		    $upload->maxSize   =     3145728 ;// 设置附件上传大小
-		    $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-		    $upload->rootPath  =     './Public'; // 设置附件上传根目录
-		    $upload->savePath  =     './Uploads/'; // 设置附件上传（子）目录
-		    // 上传文件 
-		    $info   =   $upload->upload();
-		    if(!$info) {// 上传错误提示错误信息
-		        $this->error($upload->getError());
-		    }
-		    $_POST['mastermap'] = ltrim($info['mastermap']['savepath'],'.').$info['mastermap']['savename'];
-		}
-
-		$mod = M("news");
+		$mod = M("protect");
 		$id = intval($_GET['id']);
 		$_POST['updatetime'] = date("Y-m-d");
 		$rules = array(
 			array('title','require','标题必须填写！'), 
-			array('content','require','新闻内容必须填写！'), 
+			array('content','require','文章内容必须填写！'), 
 			);
-		//判断新闻类型是否选择
-		if(empty($_POST['type'])){
-			$this -> error('新闻类型必须选择，请选择');
-		}
 		//执行修改
 		if(!$mod -> validate($rules) -> create()){
 			exit($mod -> getError());
@@ -151,7 +105,7 @@ class NewsController extends CommonController {
 			$r = $mod -> delete($id);
 			$res = $mod -> add($_POST);
 			if($res && $r){
-				$this -> success('恭喜修改成功', U("News/index"));
+				$this -> success('恭喜修改成功', U("Protect/index"));
 			}else{
 				$this -> error('抱歉修改失败');
 			}
@@ -160,10 +114,10 @@ class NewsController extends CommonController {
 		
 	}
 
-	//删除新闻
+	//删除文章
 	public function del(){
-		//实例化news信息的操作对象
-		$mod = M("news");
+		//实例化protect信息的操作对象
+		$mod = M("protect");
 		//判断用户是否有权限
 		$this -> sta();
 		$id = intval(I('id'));
@@ -173,23 +127,23 @@ class NewsController extends CommonController {
 		}
 		//判断新闻是否启用
 		if($res['status'] == 1){
-			$this -> error('新闻已经启用，请禁用之后删除');
+			$this -> error('文章已经启用，请禁用之后删除');
 		}
 		//执行删除
 		$r = $mod -> delete($id);
 		if($r){
-			$this -> success('恭喜删除成功', U('News/index'));
+			$this -> success('恭喜删除成功', U('Protect/index'));
 		}else{
 			$this -> error('抱歉删除失败');
 		}
 		
 	}
 
-	//新闻的禁止与启用
+	//文章的禁止与启用
 	public function status(){
 		// var_dump($_GET);die;
-		//实例化news表
-		$mod = M("news");
+		//实例化protect表
+		$mod = M("protect");
 		//判断用户是否有权限操作
 		$this -> sta();
 		//执行禁用与启用
@@ -200,7 +154,7 @@ class NewsController extends CommonController {
 			$data['status'] = 1;
 			$r = $mod -> save($data);
 			if($r){
-				$this -> success('恭喜启用成功', U("News/index"));
+				$this -> success('恭喜启用成功', U("Protect/index"));
 			}else{
 				$this -> error('抱歉启用失败');
 			}
@@ -209,7 +163,7 @@ class NewsController extends CommonController {
 			$data['status'] = 0;
 			$r = $mod -> save($data);
 			if($r){
-				$this -> success('恭喜禁用成功', U("News/index"));
+				$this -> success('恭喜禁用成功', U("Protect/index"));
 			}else{
 				$this -> error('抱歉禁用失败');
 			}
@@ -235,7 +189,7 @@ class NewsController extends CommonController {
 	public function look(){
 		$id = intval(I('id'));
 		//实例化表信息
-		$mod = M('news');
+		$mod = M('protect');
 		//判断用户是否有权限
 		$this -> sta();
 		$res = $mod -> find($id);

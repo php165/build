@@ -119,7 +119,6 @@ class UserController extends CommonController {
 		}
 		// dump($status);
 		
-		
 		//加载要修改的信息
 		$mod = M('role');
 		$res = $mod -> select();

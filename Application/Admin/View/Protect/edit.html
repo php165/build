@@ -11,7 +11,7 @@
                   <div class="page-content box">
                   	<div class="box-title margin_bot_20">
                       <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
-                      <form method="post" action="__APP__/Admin/News/update/id/{$res.id}" enctype="multipart/form-data">
+                      <form method="post" action="__APP__/Admin/Protect/update/id/{$res.id}" enctype="multipart/form-data">
                       	<div class="span10">
                             <dl class="zc_dl">
                               <dt>标题：</dt>
@@ -20,44 +20,8 @@
                                 <input type="text" name="title" size="100%" value="{$res.title}" class="zc_btn"  valid='required|limit'  min="6" max="20" errmsg=""  />
                                 <input type="hidden" name="username" value="{$res.username}" />
                                 <input type="hidden" name="addtime" value="{$res.addtime}" />
-                                
                               </dd>
                             </dl>
-                            <dl class="zc_dl">
-                              <dt>类型：</dt>
-                              <dd>
-                                <foreach name="list" item="vo">
-                                  <span style="color:red">*</span>&nbsp;
-                                  <if condition="($vo['type'] eq $res['type'])" >
-                                    <input type="radio" name="type" onclick="checktype();" checked="checked" class="zc_type" value="{$vo.type}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;{$vo.type}&nbsp;&nbsp;&nbsp;
-                                  <else />
-                                    <input type="radio" name="type" onclick="checktype();" class="zc_type" value="{$vo.type}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;{$vo.type}&nbsp;&nbsp;&nbsp;
-                                  </if>
-                                </foreach>
-                              </dd>
-                            </dl>
-                            <div id="mastermap" style="display: none">
-                            <dl class="zc_dl">
-                              <dt>主图：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <img src="__PUBLIC__{$res.mastermap}" width="200px" height="200px">
-                                <input type="file"  name="mastermap" class="zc_btn" value="{$res.mastermap}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;&nbsp;&nbsp;
-                                
-                              </dd>
-                            </dl>
-                            </div>
-                            <script type="text/javascript">
-                              function checktype(){
-                                var dd = $("input[name='type']:checked").val();
-                                if(dd == "考古发现"){
-                                  $("#mastermap").css("display","block");
-                                }else{
-                                  $("#mastermap").css("display","none");
-                                }
-                              }
-                              checktype();
-                            </script>
                               <dl class="zc_dl">
                               <dt>内容：</dt>
                               <dd>

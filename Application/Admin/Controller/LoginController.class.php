@@ -21,13 +21,13 @@ class LoginController extends Controller {
 	//执行登陆
 	public function login(){
             // var_dump($_POST);die;
-            // 验证验证码
-            $Verify = new \Think\Verify();
-            $res = $Verify->check($_POST['code']);
-            if(!$res){
-                  //验证码失败
-                  $this -> error('验证码不正确');
-            }
+            // // 验证验证码
+            // $Verify = new \Think\Verify();
+            // $res = $Verify->check($_POST['code']);
+            // if(!$res){
+            //       //验证码失败
+            //       $this -> error('验证码不正确');
+            // }
             //验证账号和密码
             $mod = M('users');
             $user = $mod -> where('username="'.$_POST['username'].'"') -> find();

@@ -18,7 +18,7 @@ class CommonController extends Controller {
 		//检测是否有权限
 		// dump($nodelist);die;
 		if(empty($nodelist[$con]) || !in_array($act, $nodelist[$con])){
-			$this -> error('您没有权限',U("Index/index"));
+			$this -> error('抱歉您没有权限');
 		}
 	}
 

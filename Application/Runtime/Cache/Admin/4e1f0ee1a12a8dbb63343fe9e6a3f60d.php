@@ -79,14 +79,14 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('Story/index');?>">
+                        <li> <a href="<?php echo U('News/index');?>">
                             <i class="icon-double-angle-right"></i>
                             古建新闻列表
 
                         </a>
 
                         </li>
-                        <li> <a href="<?php echo U('Story/add');?>"><i class="icon-double-angle-right"></i>添加古建新闻</a></li>
+                        <li> <a href="<?php echo U('News/add');?>"><i class="icon-double-angle-right"></i>添加古建新闻</a></li>
 
                     </ul>
                 </li>

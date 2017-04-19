@@ -111,7 +111,7 @@
                     </a>
                     <ul class="submenu">
                         <li> <a href="<?php echo U('Protect/index');?>"> <i class="icon-double-angle-right"></i> 古建保护列表 </a> </li>
-                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护 </a> </li>
+                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护文章 </a> </li>
                     </ul>
                 </li>
                 <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
@@ -199,122 +199,56 @@
 
 
    
-        <div class="main-content">
-            <div class="page-content">
-                <div class="row indexBox">
-              <div class="page-content box">
-                <div class="box-title margin_bot_20">
-                    <div class="span10">
-                        <h3 class="red">
-                            <i class="icon-volume-down icon-2x green"></i>
-                            欢迎您！<i class="blue"><?php echo ($user); ?></i>
-                        </h3>
+<script type="text/javascript" charset="utf-8" src="/commpany/build/Public/UEditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/commpany/build/Public/UEditor/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="/commpany/build/Public/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <div class="main-content">
+              <div class="page-content">
+                <div class="row">
+                  <div class="page-content box">
+                  	<div class="box-title margin_bot_20">
+                      <h4><span style="float:right;"><a href='/commpany/build/index.php/Admin/Protect/index'>返回</a></span></h4>
+                      <form method="post" action="<?php echo U('Protect/insert');?>" >
+                      	<div class="span10">
+                            <dl class="zc_dl">
+                              <dt>标题：</dt>
+                              <dd>
+                                <span style="color:red">*</span>&nbsp;
+                                <input type="text" name="title" class="zc_btn" size="100%" placeholder="请输入标题" valid='required|limit'  min="6" max="20" errmsg=""  />
+                                <input type="hidden" name="username" value="<?php echo session('user')['username'];?>">
+                              </dd>
+                            </dl>
+                              <dl class="zc_dl">
+                              <dt>内容：</dt>
+                              <dd>
+                                <span style="color:red">*</span>&nbsp;
+                                <div>
+                                    <textarea id="editor" type="text/plain" name="content" style="width:100%;height:300px;"></textarea>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                                    var ue = UE.getEditor('editor');
+                                </script>
+                                
+                              </dd>
+                              <dd>
+                                <span style="color:red">*</span>&nbsp;
+                                <input type="submit" class="zc_btn" value="添加"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="reset" class="zc_btn" value="重置"  />
+                              </dd>
+                            </dl>
+                          </div>
+                          <form/>
+                    </div>
 
-
-                    </div>
-                </div>
-                <ul class="indexK">
-                    <li class="blueBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-calendar"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["account"]); ?></b>
-                            当日充值金额
-                        </span>
-                    </li>
-                    <li class="greenBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-bar-chart"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["pay"]); ?></b>
-                            当日交易金额
-                        </span>
-                    </li>
-                    <li class="redBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-group"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["vip"]); ?></b>
-                            当日新增会员数
-                        </span>
-                    </li>
-                    <li class="yellowBg">
-                        <span class="icon-circle indexKLeft">
-                            <i class="icon-glass"></i>
-                        </span>
-                        <span class="indexKRight">
-                            <b><?php echo ($vo["payvip"]); ?></b>
-                            当日激活数
-                        </span>
-                    </li>
-                </ul>
-                <div class="indexTable">
-                    <div class="indexTableRight">
-                        <h4 class="indexTableTit">
-                            <i class="icon-reorder blue"></i>
-                            <span>已付款订单列表</span>
-                        </h4>
-                        <table>
-                            <thead>
-                            <tr><th width="90px">用户名</th>
-                                <th width="120px">订单号</th>
-                                <th width="100px">时间</th>
-                                <th width="60px">总价</th>
-                                <th width="100px">类型</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if(is_array($res)): foreach($res as $key=>$vo): ?><tr>
-                                <td><?php echo ($vo['name']); ?></td>
-                                <td><?php echo ($vo['order']); ?></td>
-                                <td><?php echo ($vo['add_time']); ?></td>
-                                <td><?php echo ($vo['account']); ?></td>
-                                <td><?php echo ($vo['project']); ?></td>
-                            </tr><?php endforeach; endif; ?>
-                        </tbody>
-                        </table>
-                    </div>
-                    <div class="indexTableLeft">
-                        <h4 class="indexTableTit">
-                            <i class="icon-reorder blue"></i>
-                            <span>新加入会员列表</span>
-                        </h4>
-                        <table>
-                            <thead>
-                                <tr><th width="60px">会员ID</th>
-                                <th width="60px">会员名</th>
-                                <th width="100px">时间</th>
-                                <th width="60px">激活状态</th>
-                                <th width="80px">余额</th>
-                                <th width="60px">公司名称</th>
-                            </tr>
-                        </thead>
-                            <tbody>
-                                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><tr>
-                                    <td><?php echo ($vo["id"]); ?></td>
-                                    <td><?php echo ($vo["vip_name"]); ?></td>
-                                    <td><?php echo ($vo['add_time']); ?></td>
-                                    <td>
-                                        <?php switch($vo["status"]): case "1": ?><span style="color:red">*</span>&nbsp;已激活<?php break;?>
-                                            <?php case "0": ?>未激活<?php break;?>
-                                            <?php default: endswitch;?>
-                                    </td>
-                                    <td>￥<?php echo ($vo["account"]); ?></td>
-                                    <td><?php echo ($vo["company"]); ?></td>
-                                </tr><?php endforeach; endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-              </div>
-            </div>
                 <!--/.box-->
-            </div>
-       <!-- /.page-content -->
-        </div><!-- /.main-content -->
+              </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+        </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
  </div><!-- /.main-container-inner -->
 </div><!-- /.main-container -->
  

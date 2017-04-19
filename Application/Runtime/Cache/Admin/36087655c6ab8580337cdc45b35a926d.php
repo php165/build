@@ -91,17 +91,39 @@
                     </ul>
                 </li>
                 
-                <li <?php if(in_array(3,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">古建百科管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('Media/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
-                        <li> <a href="<?php echo U('Media/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
+                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
+                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
                     </ul>
 
+                </li>
+                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">古建保护管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Protect/index');?>"> <i class="icon-double-angle-right"></i> 古建保护列表 </a> </li>
+                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护文章 </a> </li>
+                    </ul>
+                </li>
+                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">古建欣赏管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
+                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
+                    </ul>
                 </li>
                 <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
@@ -148,13 +170,13 @@
                         <span class="menu-text">系统设置 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
-                    <ul class="submenu">
+                    <!-- <ul class="submenu">
                         <li> <a href="<?php echo U('Set/setBase');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
                         <li> <a href="<?php echo U('Set/setDeploy');?>"> <i class="icon-double-angle-right"></i> 系统设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setRank');?>"> <i class="icon-double-angle-right"></i> 等级设置 </a> </li>
+                        <!-- <li> <a href="<?php echo U('Set/setRank');?>"> <i class="icon-double-angle-right"></i> 等级设置 </a> </li> -->
                         <!-- <li> <a href="<?php echo U('Set/setCash');?>"> <i class="icon-double-angle-right"></i> 提现设置 </a> </li> -->
 
-                        <li>
+                       <!--  <li>
                             <a href="<?php echo U('Set/setPay');?>">
                             <i class="icon-double-angle-right"></i>
 
@@ -162,8 +184,8 @@
 
                             </a>
 
-                        </li>
-                    </ul>
+                        </li> -->
+                    <!-- </ul> --> 
                 </li>
             </ul>
        <!-- /.nav-list -->
@@ -183,7 +205,7 @@
               <div class="page-content box">
               	<div class="box-title margin_bot_20">
                   	<div class="span10">
-                   		<h3><i class="icon-cogs"></i>稿件管理 </h3>
+                   		<h3><i class="icon-cogs"></i>新闻管理 </h3>
                   	</div>
                 </div>
                   <form class="form-horizontal" action="/commpany/build/index.php/Admin/News/index" method="get">
@@ -192,8 +214,8 @@
                               <select name="searchtype" id="searchtype" class="input-medium">
                                   <option value="0">--选择搜索类型--</option>
 
-                                  <option <?php if($search == 'title'): ?>selected="selected" <?php else: endif; ?> value="title">稿件标题</option>
-                                  <option <?php if($search == 'username'): ?>selected="selected" <?php else: endif; ?> value="username">发稿人</option>
+                                  <option <?php if($search == 'title'): ?>selected="selected" <?php else: endif; ?> value="title">新闻标题</option>
+                                  <option <?php if($search == 'type'): ?>selected="selected" <?php else: endif; ?> value="type">栏目</option>
 
                               </select>
                           </label>
@@ -209,7 +231,7 @@
                             <tr>
                                 <th style="width:5%;">ID</th>
                                 <th style="width:5%;">标题</th>
-                                <th style="width:5%;">是否发布</th>
+                                <th style="width:5%;">栏目</th>
                                 <th style="width:5%;">发稿人</th>
                                 <th style="width:5%;">添加时间</th>
                                 <th style="width:5%;">状态</th>
@@ -223,24 +245,22 @@
                          <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
                           <td><?php echo ($vo["id"]); ?></td>
                           <td><?php echo ($vo["title"]); ?></td>
-                          <td>
-                            <?php switch($vo["release"]): case "1": ?>已发布<?php break;?>
-                              <?php case "0": ?>未发布<?php break; endswitch;?>
-                          </td>
+                          <td><?php echo ($vo["type"]); ?></td>
                           <td><?php echo ($vo["username"]); ?></td>
-                          <td><?php echo ($vo["add_time"]); ?></td>
+                          <td><?php echo ($vo["addtime"]); ?></td>
                           <td>
-                              <?php switch($vo["status"]): case "3": ?>申请退回<?php break;?>
-                                  <?php case "2": ?>申请审核<br/><a href="/commpany/build/index.php/Admin/News/start/id/<?php echo ($vo["id"]); ?>" class="green cancel">[开始审核]</a><br/><a href="/commpany/build/index.php/Admin/News/see/id/<?php echo ($vo["id"]); ?>" class="blue cancel">[查看稿件]</a><?php break;?>
-                                  <?php case "1": ?>已审核<br/><a href="/commpany/build/index.php/Admin/News/stop/id/<?php echo ($vo["id"]); ?>" class="green cancel">[禁止发布]</a><?php break;?>
-                                  <?php case "0": ?>未审核<br/><a href="/commpany/build/index.php/Admin/News/start/id/<?php echo ($vo["id"]); ?>" class="green cancel">[开始审核]</a><?php break;?>
+                              <?php switch($vo["status"]): case "1": ?>已启用<?php break;?>
+                                  <?php case "0": ?>未启用<?php break;?>
                                   <?php default: endswitch;?>
                           </td>
                           <td class="green information">
-                            <a href="/commpany/build/index.php/Admin/Story/project/id/<?php echo ($vo["id"]); ?>" class="green cancel">发布</a>
-                            <a href="/commpany/build/index.php/Admin/Story/sendBack/id/<?php echo ($vo["id"]); ?>" class="green cancel">退回</a>
-                            <a href="/commpany/build/index.php/Admin/Story/edit/id/<?php echo ($vo["id"]); ?>" class="green cancel">编辑</a>
-                            <a href="/commpany/build/index.php/Admin/Story/del/id/<?php echo ($vo["id"]); ?>" class="green cancel">删除</a>
+                            <a href="/commpany/build/index.php/Admin/News/look/id/<?php echo ($vo["id"]); ?>" class="green cancel">查看</a>
+                            <a href="/commpany/build/index.php/Admin/News/status/id/<?php echo ($vo["id"]); ?>" class="green cancel">
+                              <?php if(($vo["status"] == 0) ): ?>启用
+                              <?php else: ?>禁用<?php endif; ?>
+                            </a>
+                            <a href="/commpany/build/index.php/Admin/News/edit/id/<?php echo ($vo["id"]); ?>" class="green cancel">编辑</a>
+                            <a href="/commpany/build/index.php/Admin/News/del/id/<?php echo ($vo["id"]); ?>" class="green cancel">删除</a>
                           </td>
                         </tr><?php endforeach; endif; ?>
                     </table>

@@ -5,7 +5,7 @@
               <div class="page-content box">
               	<div class="box-title margin_bot_20">
                   	<div class="span10">
-                   		<h3><i class="icon-cogs"></i>新闻管理 </h3>
+                   		<h3><i class="icon-cogs"></i>古建百科管理 </h3>
                   	</div>
                 </div>
                   <form class="form-horizontal" action="__URL__/index" method="get">
@@ -14,7 +14,7 @@
                               <select name="searchtype" id="searchtype" class="input-medium">
                                   <option value="0">--选择搜索类型--</option>
 
-                                  <option <if condition="$search == 'title'"> selected="selected" <else/></if> value="title">新闻标题</option>
+                                  <option <if condition="$search == 'title'"> selected="selected" <else/></if> value="title">古建百科标题</option>
                                   <option <if condition="$search == 'type'"> selected="selected" <else/></if> value="type">栏目</option>
 
                               </select>
@@ -57,14 +57,14 @@
                                 </switch>
                           </td>
                           <td class="green information">
-                            <a href="__APP__/Admin/News/look/id/{$vo.id}" class="green cancel">查看</a>
-                            <a href="__APP__/Admin/News/status/id/{$vo.id}" class="green cancel">
+                            <a href="__APP__/Admin/Cyclopedia/look/id/{$vo.id}" class="green cancel">查看</a>
+                            <a href="__APP__/Admin/Cyclopedia/status/id/{$vo.id}" class="green cancel">
                               <if condition="($vo.status eq 0) "> 启用
                               <else />禁用
                               </if>
                             </a>
-                            <a href="__APP__/Admin/News/edit/id/{$vo.id}" class="green cancel">编辑</a>
-                            <a href="__APP__/Admin/News/del/id/{$vo.id}" class="green cancel">删除</a>
+                            <a href="__APP__/Admin/Cyclopedia/edit/id/{$vo.id}" class="green cancel">编辑</a>
+                            <a href="__APP__/Admin/Cyclopedia/del/id/{$vo.id}" class="green cancel">删除</a>
                           </td>
                         </tr>
                         </foreach>
