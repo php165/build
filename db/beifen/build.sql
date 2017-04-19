@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-04-19 18:49:16
+Date: 2017-04-19 19:12:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -178,8 +178,11 @@ DROP TABLE IF EXISTS `anc_pic`;
 CREATE TABLE `anc_pic` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pictures` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `addtime` datetime NOT NULL,
-  `updatetime` datetime NOT NULL,
+  `addtime` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `updatetime` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未启用，1为启用',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

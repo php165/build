@@ -111,7 +111,7 @@
                     </a>
                     <ul class="submenu">
                         <li> <a href="<?php echo U('Protect/index');?>"> <i class="icon-double-angle-right"></i> 古建保护列表 </a> </li>
-                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护 </a> </li>
+                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护文章 </a> </li>
                     </ul>
                 </li>
                 <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
@@ -121,31 +121,31 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
-                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
+                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建欣赏列表 </a> </li>
+                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建欣赏集 </a> </li>
                     </ul>
                 </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if(in_array(3,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">古建图库管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('Word/index');?>"> <i class="icon-double-angle-right"></i> 古建图库列表 </a> </li>
-                        <li> <a href="<?php echo U('Word/add');?>"> <i class="icon-double-angle-right"></i> 添加古建图库 </a> </li>
+                        <li> <a href="<?php echo U('Pic/index');?>"> <i class="icon-double-angle-right"></i> 古建图库列表 </a> </li>
+                        <li> <a href="<?php echo U('Pic/add');?>"> <i class="icon-double-angle-right"></i> 添加古建图库集 </a> </li>
                     </ul>
 
                 </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if(in_array(4,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">古建视频管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('Notice/index');?>"> <i class="icon-double-angle-right"></i> 古建视频列表 </a> </li>
-                        <li> <a href="<?php echo U('Notice/add');?>"> <i class="icon-double-angle-right"></i> 添加古建视频 </a> </li>
+                        <li> <a href="<?php echo U('Video/index');?>"> <i class="icon-double-angle-right"></i> 古建视频列表 </a> </li>
+                        <li> <a href="<?php echo U('Video/add');?>"> <i class="icon-double-angle-right"></i> 添加古建视频 </a> </li>
                     </ul>
 
                 </li>
@@ -165,7 +165,7 @@
 
                 </li> -->
                 <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="#"  class="dropdown-toggle">
+                    <a href="<?php echo U('Set/setBase');?>"  class="dropdown-toggle">
                         <i class="icon-cogs"></i>
                         <span class="menu-text">系统设置 </span>
                         <b class="arrow icon-angle-down"></b>
