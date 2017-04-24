@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>帮你修后台管理系统</title>
+<title>金玉海和后台管理系统</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
     <div class="navbar-container">
         <div class="navbar-header pull-left"> 
             <a href="<?php echo U('Index/index');?>" class="navbar-brand"> 
-                <small>帮你修管理后台 </small>
+                <small>金玉海和管理后台 </small>
             </a>
          </div><!-- /.navbar-header -->
         <div class="navbar-header pull-right">

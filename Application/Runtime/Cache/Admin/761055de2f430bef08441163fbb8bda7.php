@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>帮你修后台管理系统</title>
+<title>金玉海和后台管理系统</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,7 +20,7 @@
     <div class="navbar-container">
         <div class="navbar-header pull-left"> 
             <a href="<?php echo U('Index/index');?>" class="navbar-brand"> 
-                <small>帮你修管理后台 </small>
+                <small>金玉海和管理后台 </small>
             </a>
          </div><!-- /.navbar-header -->
         <div class="navbar-header pull-right">
@@ -168,30 +168,31 @@
                               </dd>
                             </dl>
                             </div>
-                            <dl class="zc_dl">
-                              <dt>添加视频：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <div>
-                                    <textarea id="editors" type="text/plain" name="video" style="width:500px;height:300px;"><?php echo ($res["video"]); ?></textarea>
-                                </div>
-                                <script type="text/javascript">
-                                    //实例化编辑器
-                                    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-                                    var ue = UE.getEditor('editors',{
-                                      //这里可以选择自己需要的工具的按钮名称，
-                                      toolbars:[['insertvideo',]],
-                                      //focus时自动清空初始化时的内容
-                                      autoClearinitialContent:true,
-                                      //关闭数字统计
-                                      wordCount:false,
-                                      //关闭elementPath
-                                      elementPathEnabled:false,
+                            <?php if(($res['video'])): ?><dl class="zc_dl">
+                                <dt>添加视频：</dt>
+                                <dd>
+                                  <div><?php echo ($res["video"]); ?></div>
+                                  <span style="color:red">*</span>&nbsp;
+                                  <div>
+                                      <textarea id="editors" type="text/plain" name="video" style="width:500px;height:300px;"><?php echo ($res["video"]); ?></textarea>
+                                  </div>
+                                  <script type="text/javascript">
+                                      //实例化编辑器
+                                      //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                                      var ue = UE.getEditor('editors',{
+                                        //这里可以选择自己需要的工具的按钮名称，
+                                        toolbars:[['insertvideo',]],
+                                        //focus时自动清空初始化时的内容
+                                        autoClearinitialContent:true,
+                                        //关闭数字统计
+                                        wordCount:false,
+                                        //关闭elementPath
+                                        elementPathEnabled:false,
 
-                                    });
-                                </script>
-                                
-                              </dd>
+                                      });
+                                  </script>
+                                </dd>
+                              <?php else: endif; ?>
                               <dl class="zc_dl">
                               <dt>内容描述：</dt>
                               <dd>

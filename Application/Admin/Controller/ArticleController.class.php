@@ -157,6 +157,13 @@ class ArticleController extends CommonController {
 
 		$mod = M("article");
 		$id = intval($_GET['id']);
+		//判断是否有视频
+		$r = $mod -> find($id);
+		if($r['video']){
+			if(!$_POST['video']){
+				$this -> error('视频必须要添加');
+			}
+		}
 		$_POST['id'] = $id;
 		$_POST['updatetime'] = date("Y-m-d");
 		$rules = array(

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>帮你修后台管理系统</title>
+<title>金玉海和后台管理系统</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
     <div class="navbar-container">
         <div class="navbar-header pull-left"> 
             <a href="<?php echo U('Index/index');?>" class="navbar-brand"> 
-                <small>帮你修管理后台 </small>
+                <small>金玉海和管理后台 </small>
             </a>
          </div><!-- /.navbar-header -->
         <div class="navbar-header pull-right">
@@ -165,21 +165,22 @@
                                 <img src="/commpany/build/Public<?php echo ($res["mastermap"]); ?>"  height="150px" />
                               </dd>
                             </dl>
-                            <dl class="zc_dl">
-                              <dt>视频：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <div width="100%" height="100%" id="video">
-                                <?php echo ($res["video"]); ?>
-                              </div>
-                              </dd>
-                              <!--给video标签设置poster属性-->
-                              <script type="text/javascript">
-                                var mastermap = $("img").attr("src");
-                                // alert(mastermap);
-                                $("video").attr({poster:mastermap});
-                              </script>
-                            </dl>
+                            <?php if(($res['video'])): ?><dl class="zc_dl">
+                                <dt>视频：</dt>
+                                <dd>
+                                  <span style="color:red">*</span>&nbsp;
+                                  <div width="100%" height="100%" id="video">
+                                  <?php echo ($res["video"]); ?>
+                                </div>
+                                </dd>
+                                <!--给video标签设置poster属性-->
+                                <script type="text/javascript">
+                                  var mastermap = $("img").attr("src");
+                                  // alert(mastermap);
+                                  $("video").attr({poster:mastermap});
+                                </script>
+                              </dl>
+                            <?php else: endif; ?>
                               <dl class="zc_dl">
                               <dt>描述：</dt><br/>
                               <div width="100%" height="100%">
