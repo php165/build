@@ -1,0 +1,44 @@
+<include file="Layout:header" />
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <div class="main-content">
+    <div class="page-content">
+        <div class="row">
+            <div class="page-content box">
+              <div class="box-title margin_bot_20">
+                    <div class="span10">
+                    <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                        <h3><i class="icon-magic"></i>添加分类</h3>
+                    </div>
+                </div>
+                  <form action="__URL__/insert" method="post" class="form-horizontal">
+                      <div class="form-group">
+                          <label class="control-label">分类名 : </label>
+                          <div class="controls pull-left">
+                              <input type="text" class="input-large" name="type">
+                              <span class="help-inline red"> * </span>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label">分类描述 : </label>
+                          <textarea class="input-large" style="margin: 0px; height: 115px; width: 530px;" name="content"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label">是否启用 : </label>
+                          <input type="radio" name="status" value="1">&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" name="status" value="0">&nbsp;否
+                      </div>
+                      <div>
+                          <label class="control-label"></label>
+                          <button id="bsubmit" type="submit"  class="btn btn-sm btn-primary">添加</button>
+                      </div>
+                  </form>
+            </div>
+        </div>
+        <!--/.box-->
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
+<include file="Layout:footer" />

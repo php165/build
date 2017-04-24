@@ -1,4 +1,3 @@
-
 <include file="Layout:header" />
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.min.js"> </script>
@@ -6,86 +5,45 @@
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
     <div class="main-content">
-              <div class="page-content">
-                <div class="row">
-                  <div class="page-content box">
-                  	<div class="box-title margin_bot_20">
-                      <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
-                      <form method="post" action="__APP__/Admin/News/update/id/{$res.id}" enctype="multipart/form-data">
-                      	<div class="span10">
-                            <dl class="zc_dl">
-                              <dt>标题：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <input type="text" name="title" size="100%" value="{$res.title}" class="zc_btn"  valid='required|limit'  min="6" max="20" errmsg=""  />
-                                <input type="hidden" name="username" value="{$res.username}" />
-                                <input type="hidden" name="addtime" value="{$res.addtime}" />
-                                
-                              </dd>
-                            </dl>
-                            <dl class="zc_dl">
-                              <dt>类型：</dt>
-                              <dd>
-                                <foreach name="list" item="vo">
-                                  <span style="color:red">*</span>&nbsp;
-                                  <if condition="($vo['type'] eq $res['type'])" >
-                                    <input type="radio" name="type" onclick="checktype();" checked="checked" class="zc_type" value="{$vo.type}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;{$vo.type}&nbsp;&nbsp;&nbsp;
-                                  <else />
-                                    <input type="radio" name="type" onclick="checktype();" class="zc_type" value="{$vo.type}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;{$vo.type}&nbsp;&nbsp;&nbsp;
-                                  </if>
-                                </foreach>
-                              </dd>
-                            </dl>
-                            <div id="mastermap" style="display: none">
-                            <dl class="zc_dl">
-                              <dt>主图：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <img src="__PUBLIC__{$res.mastermap}" width="200px" height="200px">
-                                <input type="file"  name="mastermap" class="zc_btn" value="{$res.mastermap}" valid="required|limit"  min="20" max="40" errmsg="" />&nbsp;&nbsp;&nbsp;
-                                
-                              </dd>
-                            </dl>
-                            </div>
-                            <script type="text/javascript">
-                              function checktype(){
-                                var dd = $("input[name='type']:checked").val();
-                                if(dd == "考古发现"){
-                                  $("#mastermap").css("display","block");
-                                }else{
-                                  $("#mastermap").css("display","none");
-                                }
-                              }
-                              checktype();
-                            </script>
-                              <dl class="zc_dl">
-                              <dt>内容：</dt>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <div>
-                                    <textarea id="editor"  type="text/plain" name="content" style="width:100%;height:300px;">{$res.content}</textarea>
-                                </div>
-                                <script type="text/javascript">
-                                    //实例化编辑器
-                                    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-                                    var ue = UE.getEditor('editor');
-                                </script>
-                              </dd>
-                              <dd>
-                                <span style="color:red">*</span>&nbsp;
-                                <input type="submit" class="zc_btn" value="修改"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="reset" class="zc_btn" value="重置"  />
-                                
-                              </dd>
-                            </dl>
-                          </div>
-                          <form/>
+    <div class="page-content">
+        <div class="row">
+            <div class="page-content box">
+              <div class="box-title margin_bot_20">
+                    <div class="span10">
+                    <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                        <h3><i class="icon-magic"></i>添加轮播图</h3>
                     </div>
-
-                <!--/.box-->
-              </div><!-- /.page-content -->
-            </div><!-- /.main-content -->
-        </div><!-- /.main-container-inner -->
-    </div><!-- /.main-container -->
+                </div>
+                  <form method="post" action="{:U('Pic/update')}" enctype="multipart/form-data">
+                      <div class="form-group">
+                          <p><label class="control-label">轮播图 : </label></p>
+                              <input type="file" class="input-large" name="pic">
+                              <input type="hidden" name="id" value="{$res.id}">
+                              <img src="__PUBLIC__{$res.pic}" style="width:200px;">
+                          
+                      </div>
+                      <div class="form-group">
+                          <p><label class="control-label">轮播图描述 : </label></p>
+                          <textarea class="input-large" style="margin: 0px; height: 115px; width: 530px;" name="content">{$res.content}</textarea>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label">是否启用 : </label>
+                          <if condition="($res['status']==0)">
+                            <input type="radio" name="status" value="1">&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="status" checked="checked" value="0">&nbsp;否
+                          <else/>
+                            <input type="radio" name="status"  checked="checked" value="1">&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="status" checked="checked" value="0">&nbsp;否
+                          </if>  
+                      </div>
+                      <div>
+                          <label class="control-label"></label>
+                          <button id="bsubmit" type="submit"  class="btn btn-sm btn-primary">修改</button>
+                      </div>
+                  </form>
+            </div>
+        </div>
+        <!--/.box-->
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
 <include file="Layout:footer" />
-

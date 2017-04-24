@@ -21,13 +21,13 @@ class LoginController extends Controller {
 	//执行登陆
 	public function login(){
             // var_dump($_POST);die;
-            // // 验证验证码
-            // $Verify = new \Think\Verify();
-            // $res = $Verify->check($_POST['code']);
-            // if(!$res){
-            //       //验证码失败
-            //       $this -> error('验证码不正确');
-            // }
+            // 验证验证码
+            $Verify = new \Think\Verify();
+            $res = $Verify->check($_POST['code']);
+            if(!$res){
+                  //验证码失败
+                  $this -> error('验证码不正确');
+            }
             //验证账号和密码
             $mod = M('users');
             $user = $mod -> where('username="'.$_POST['username'].'"') -> find();
@@ -64,18 +64,10 @@ class LoginController extends Controller {
                   $nodelist[$v['action']][]=$v['fangfa'];
             }
             $nodelist['Index'][]='index';
+            $nodelist['Index'][]='pass';
+            $nodelist['Index'][]='updatepass';
             //把权限数组放入session
             session('nodelist',$nodelist);
-
-            //设置管理员登陆后可以看到的内容
-            $modu = M('users_role');
-            $uid = $user['id'];
-            $r = $modu -> where('uid="'.$uid.'"') -> select();
-            $rid = [];
-            foreach ($r as $v) {
-                   $rid[]=$v['rid'];
-            } 
-            session('rid',$rid);
             //添加登陆时间
             $data['updatetime'] = date("Y-m-d H:i:s");
             $data['loginip'] = get_client_ip();

@@ -11,27 +11,31 @@ class UserController extends CommonController {
 		$mod = M("users");
 		//设置查询
 		$search = empty($_GET['searchtype']) ? '' : $_GET['searchtype'];
-		//判断搜索类型
-		if($_GET['searchtype'] == 'id'){
-			//用户输入的内容进行转换
-			$id = intval($_GET['content']);
-			$res = $mod -> where('id='.$id) -> select();
+		$content = $_GET['content'];
+		if($_GET['searchtype']){
+			$data[$_GET['searchtype']] = array('like',"%{$_GET['content']}%");
+			// dump($data);die;
 		}else{
-			$content = $_GET['content'];
-			$data[$search] = array('like' , "%$content%");
-			//分页
-			$page = new Page($mod->where($data)->count(),5);//参数
-			//设置配置样式
-			$page -> setConfig('prev','上一页');
-			$page -> setConfig('next','下一页');
-			$res = $mod -> where($data) -> limit($page->firstRow,$page->listRows)->order('addtime desc')->select();
-			// dump($res);
-			//分页链接
-			$url = $page ->show();
-			$this -> assign('content',$content);
-			$this -> assign('search',$search); 
-			$this ->assign('url',$url);
-		}
+			$data = '';
+		}	
+		//分页
+		$page = new Page($mod->where($data)->count(),5);//参数
+		//设置配置样式
+		$page -> setConfig('prev','上一页');
+		$page -> setConfig('next','下一页');
+		$res = $mod
+			-> alias('u')
+			-> order('u.addtime desc')
+		 	-> where($data) 
+		 	-> limit($page->firstRow,$page->listRows)
+		 	-> select();
+		// dump($res);
+		//分页链接
+		$url = $page ->show();
+		$this -> assign('content',$content);
+		$this -> assign('search',$search); 
+		$this ->assign('url',$url);
+		
 		
 		//获取信息，放置模板
 		$this -> assign("list",$res);
@@ -71,7 +75,7 @@ class UserController extends CommonController {
 		$_POST['repassword'] = md5(md5($_POST['repassword']).$_POST['salt']);
 
 		//获取添加时间
-		$_POST['addtime'] = date("Y-m-d H:i:s");
+		$_POST['addtime'] = date("Y-m-d");
 				
 		//添加数据
 		if(!$mod -> validate($rules) -> create()){
@@ -100,57 +104,69 @@ class UserController extends CommonController {
 
 	//加载管理员修改权限表单
 	public function edit(){
-		//实例化users信息操作对象
-		$status = M('users_role as ur') -> join('__USERS__ as u on u.id = ur.uid') -> where('u.id="'.session('user')['id'].'"') -> select();
-		$rid = [];
-		foreach ($status as $v ) {
-			$rid[] = $v['rid'];
+		//获取权限数据
+		$mod = M('node');
+		$node = $mod -> where('salt=1') -> select();
+		// dump($node);die;
+		//处理数据
+		$data=[];
+		foreach ($node as $v) {
+			$data[$v['name']] = $mod -> where('pid="'.$v['id'].'"') -> select();
+
 		}
-		//判断用户是否有权限修改
-		if(!in_array(1, $rid)){
-			$this -> error('抱歉您没有权限操作',U('User/index'));
-		}
-		//判断是否存在此管理员
-		$user = M('users');
+		// dump($data);die;
+		
+		//管理员现有权限信息
 		$id = intval(I('id'));
-		$u = $user -> find($id);
-		if(!$u){
-			$this -> error('此管理员不存在，请重新选择', U('User/index'));
+		$res = M('users') -> find($id);
+		if(!$res){
+			$this -> error('此管理员不存在',U('User/index'));
 		}
-		// dump($status);
-		
-		//加载要修改的信息
-		$mod = M('role');
-		$res = $mod -> select();
-		
-		$this -> assign('vo',$user -> find(I('id')));
+		$rid = M('users_role') -> where('uid="'.$id.'"') -> find();
+		$role = M('role') -> where('id="'.$rid['rid'].'"') -> find();
+		$this -> assign('role',$role);
 		$this -> assign('res',$res);
-		//加载模板
-		$this -> display("edit");
+		// 权限信息
+		$this -> assign('list',$data);
+		$this -> display('edit');
+		
 	}
 
 	//执行管理员权限修改
 	public function update(){
-		//实例化users信息的操作对象
-		$mod = M("users_role");
 		// dump($_POST);die;
-		//验证用户提交的数据
-		if(empty($_POST['auth'])){
+		$id = I('id');
+		//用户提交数据是否为空
+		if(!$_POST['nid']){
 			$this -> error('请选择权限');
 		}
-		//修改用户的权限
-		$mod -> where('uid="'.I('id').'"') -> delete();
-		foreach ($_POST['auth'] as $v) {
-			$data['uid'] = I('id');
-			$data['rid'] = $v;
-			$res = $mod -> add($data);
+		//查看管理员rid
+		$r = M('users_role') -> where('uid="'.$id.'"') -> find();
+		//修改现在管理员权限
+		$rid = $r['rid'];
+		$mod = M('role_node');
+		//先删除原有权限，再添加新的权限
+		$res = $mod -> where('rid="'.$rid.'"') -> delete();
+		foreach ($_POST['nid'] as $v) {
+			$data['rid'] = $rid;
+			$data['nid'] = $v;
+			$res1 = $mod -> add($data);
+		}
+		//修改角色名字
+		$res3 = M('role') -> where('role="'.I('role').'"') -> select();
+		if($res3){
+			$this -> error('该角色已经存在');
+		}
+		$da['id'] = $rid;
+		$da['role'] = I('role');
+		$res2 = M('role') -> save($da);
+
+		if($res && $res1){
+			$this -> success('恭喜修改成功',U('User/index'));
+		}else{
+			$this -> error('抱歉修改失败');
 		}
 
-		if($res){
-			$this -> success('恭喜权限修改成功',U("User/index"));
-		}else{
-			$this -> error('抱歉权限修改失败', U("User/index"));
-		}
 	}
 
 	//删除管理员
@@ -172,13 +188,26 @@ class UserController extends CommonController {
 		if(!in_array(1, $rid)){
 			$this -> error('抱歉您没有权限操作',U('User/index'));
 		}
-		//判断要删除的管理员是否启用
-		if($u['status'] == 0){
-			$this -> error("该管理员已启用，请先禁用");
-		}
+		// //判断要删除的管理员是否启用
+		// if($u['status'] == 0){
+		// 	$this -> error("该管理员已启用，请先禁用");
+		// }
+		//查看是否为超级管理员
+		$role = $mod
+			-> alias(u)
+			-> join('anc_users_role as ur on ur.uid=u.id')
+			-> join('anc_role as r on ur.rid = r.id')
+			-> field('r.role')
+			-> where('u.id="'.$id.'"')
+			-> find();
+			if($role['role'] == "超级管理员"){
+				$this -> error('该管理员为超级管理员，禁止删除');
+			}
 		//执行删除
 		$res = $mod -> delete($id);
-		if($res){
+		//删除users_role中的数据
+		$r = M('users_role') -> where('uid="'.$id.'"') -> delete();
+		if($res && $r){
 			$this -> success("恭喜删除成功!", U("User/index"));
 		}else{
 			$this -> error("抱歉删除失败，请重试");
@@ -208,6 +237,17 @@ class UserController extends CommonController {
 		if($u['status'] == 0){
 			$data['status'] = 1;
 			$data['id'] = $id;
+			//查看是否为超级管理员
+			$role = $user
+				-> alias(u)
+				-> join('anc_users_role as ur on ur.uid=u.id')
+				-> join('anc_role as r on ur.rid = r.id')
+				-> field('r.role')
+				-> where('u.id="'.$id.'"')
+				-> find();
+				if($role['role'] == "超级管理员"){
+					$this -> error('该管理员为超级管理员，禁止禁用');
+				}
 			$res = $user -> save($data);
 			if($res){
 				$this -> success("恭喜禁用成功", U("User/index"));
@@ -215,6 +255,5 @@ class UserController extends CommonController {
 				$this -> error("抱歉禁用失败");
 			}
 		}
-	}
-		
+	}	
 }

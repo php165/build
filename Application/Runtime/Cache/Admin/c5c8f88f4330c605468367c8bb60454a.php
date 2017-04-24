@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 
-                <li <?php if(in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if((!empty($_SESSION['nodelist']['User']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">管理员管理 </span>
@@ -69,100 +69,55 @@
                         <li> <a href="<?php echo U('User/index');?>"> <i class="icon-double-angle-right"></i> 管理员列表 </a> </li>
                         <li> <a href="<?php echo U('User/add');?>"> <i class="icon-double-angle-right"></i> 添加管理员 </a> </li>
                     </ul>
-
                 </li>
 
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="#" class="dropdown-toggle" >
+                <li <?php if((!empty($_SESSION['nodelist']['Role']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
                         <i class="icon-group"></i>
-                        <span class="menu-text">古建新闻管理</span>
+                        <span class="menu-text">角色管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('News/index');?>">
-                            <i class="icon-double-angle-right"></i>
-                            古建新闻列表
+                        <li> <a href="<?php echo U('Role/index');?>"> <i class="icon-double-angle-right"></i> 角色列表 </a> </li>
+                        <li> <a href="<?php echo U('Role/add');?>"> <i class="icon-double-angle-right"></i> 添加角色 </a> </li>
+                    </ul>
+                </li>
 
-                        </a>
+                <li <?php if((!empty($_SESSION['nodelist']['Article']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">内容管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Article/index');?>"> <i class="icon-double-angle-right"></i> 内容列表 </a> </li>
+                        <li> <a href="<?php echo U('Article/add');?>"> <i class="icon-double-angle-right"></i> 添加内容 </a> </li>
+                    </ul>
+                </li>
 
-                        </li>
-                        <li> <a href="<?php echo U('News/add');?>"><i class="icon-double-angle-right"></i>添加古建新闻</a></li>
-
+                <li <?php if((!empty($_SESSION['nodelist']['Type']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">分类管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Type/index');?>"> <i class="icon-double-angle-right"></i> 分类列表 </a> </li>
+                        <li> <a href="<?php echo U('Type/add');?>"> <i class="icon-double-angle-right"></i> 添加分类 </a> </li>
                     </ul>
                 </li>
                 
-                <li <?php if(in_array(3,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建百科管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Media/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
-                        <li> <a href="<?php echo U('Media/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建图库管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Word/index');?>"> <i class="icon-double-angle-right"></i> 古建图库列表 </a> </li>
-                        <li> <a href="<?php echo U('Word/add');?>"> <i class="icon-double-angle-right"></i> 添加古建图库 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建视频管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Notice/index');?>"> <i class="icon-double-angle-right"></i> 古建视频列表 </a> </li>
-                        <li> <a href="<?php echo U('Notice/add');?>"> <i class="icon-double-angle-right"></i> 添加古建视频 </a> </li>
-                    </ul>
-
-                </li>
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Admin/index');?>" >
-                        <i class="icon-user"></i>
-                        <span class="menu-text">管理员管理</span>
-
-                    </a>
-
-                </li> -->
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) || in_array(4,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Finance/index');?>">
-                        <i class="icon-magic"></i>
-                        <span class="menu-text">财务管理</span>
-                    </a>
-
-                </li> -->
-                <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if((!empty($_SESSION['nodelist']['Set'])) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a href="#"  class="dropdown-toggle">
                         <i class="icon-cogs"></i>
                         <span class="menu-text">系统设置 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Set/setBase');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setDeploy');?>"> <i class="icon-double-angle-right"></i> 系统设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setRank');?>"> <i class="icon-double-angle-right"></i> 等级设置 </a> </li>
+                   <ul class="submenu">
+                        <li> <a href="<?php echo U('Set/index');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
+                        <li> <a href="<?php echo U('Set/addperson');?>"> <i class="icon-double-angle-right"></i> 联系人设置 </a> </li>
+                        <li> <a href="<?php echo U('Pic/index');?>"> <i class="icon-double-angle-right"></i> 轮播图设置 </a> </li>
                         <!-- <li> <a href="<?php echo U('Set/setCash');?>"> <i class="icon-double-angle-right"></i> 提现设置 </a> </li> -->
-
-                        <li>
-                            <a href="<?php echo U('Set/setPay');?>">
-                            <i class="icon-double-angle-right"></i>
-
-                              <span>支付方式</span>
-
-                            </a>
-
-                        </li>
                     </ul>
                 </li>
             </ul>
@@ -189,15 +144,35 @@
                   <dt>用户名：</dt>
                   <dd>
                     <span style="color:red">*</span>&nbsp;
-                    <input type="text" id="username"  disabled="disabled" value="<?php echo ($vo["username"]); ?>" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
-                    <input type="hidden" name="id" value="<?php echo ($vo["id"]); ?>"/>
+                    <input type="text" id="username"  disabled="disabled" value="<?php echo ($res["username"]); ?>" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
+                    <input type="hidden" name="id" value="<?php echo ($res["id"]); ?>"/>
+                  </dd>
+                </dl><br/>
+                <dl class="zc_dl">
+                  <dt>角色名：</dt>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;
+                    <input type="text" id="role" name="role"  value="<?php echo ($role["role"]); ?>" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
                   </dd>
                 </dl><br/>
                 <dl class="zc_dl">
                   <dt>管理员权限：</dt>
                   <dd>
-                    <span style="color:red">*</span>&nbsp;
-                      <?php if(is_array($res)): foreach($res as $key=>$vo): ?><input class="auth" type="checkbox" name="auth[]" value="<?php echo ($vo["id"]); ?>">&nbsp;<?php echo ($vo["role"]); ?>&nbsp;&nbsp;&nbsp;<?php endforeach; endif; ?>
+                    <table class="table table-striped table-bordered table-hover" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th width="20%">权限模块</th>
+                        <th width="80%">权限名称</th>
+                    </tr></thead>
+                    <tbody>
+                    <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
+                        <td ><input class="one" type="checkbox" name="nids[]" value="<?php echo ($key); ?>" style="float: left;">&nbsp;&nbsp;<?php echo ($key); ?></td>
+                        <td>
+                          <?php if(is_array($vo)): foreach($vo as $key=>$li): ?><input class="two" type="checkbox" name="nid[]" value="<?php echo ($li["id"]); ?>" >&nbsp;&nbsp;<?php echo ($li["name"]); ?>&nbsp;&nbsp;<?php endforeach; endif; ?>
+                        </td> 
+                    </tr><?php endforeach; endif; ?>
+                    </tbody>
+                </table>
                   </dd>
                 </dl><br/>
                 <dd>
@@ -207,19 +182,6 @@
                 </dd>
               </div>
               <form/>
-              <!--管理员权限选中-->
-              <script type="text/javascript">
-                var username = $("#username").val();
-                $.ajax({
-                  type: 'POST',
-                  url: "<?php echo U('User/auth');?>",
-                  data: {"username":username},
-                  dataType: "json",
-                  success: function(){
-
-                  },
-                });
-              </script>
             </div>
             <!--/.box-->
           </div><!-- /.page-content -->
@@ -233,3 +195,14 @@
 
 </body>
 </html>
+<script type="text/javascript">
+  $(function(){
+    $(".one").click(function(){
+      if($(".one").is(":checked")){
+        $(this).parent().next().children().attr('checked','checked');
+      }else{
+        $(this).parent().next().children().removeAttr('checked');
+      }
+    });
+  })
+</script>

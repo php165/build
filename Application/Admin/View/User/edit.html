@@ -11,17 +11,39 @@
                   <dt>用户名：</dt>
                   <dd>
                     <span style="color:red">*</span>&nbsp;
-                    <input type="text" id="username"  disabled="disabled" value="{$vo.username}" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
-                    <input type="hidden" name="id" value="{$vo.id}"/>
+                    <input type="text" id="username"  disabled="disabled" value="{$res.username}" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
+                    <input type="hidden" name="id" value="{$res.id}"/>
+                  </dd>
+                </dl><br/>
+                <dl class="zc_dl">
+                  <dt>角色名：</dt>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;
+                    <input type="text" id="role" name="role"  value="{$role.role}" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
                   </dd>
                 </dl><br/>
                 <dl class="zc_dl">
                   <dt>管理员权限：</dt>
                   <dd>
-                    <span style="color:red">*</span>&nbsp;
-                      <foreach name="res" item="vo"> 
-                      <input class="auth" type="checkbox" name="auth[]" value="{$vo.id}">&nbsp;{$vo.role}&nbsp;&nbsp;&nbsp;
-                      </foreach>
+                    <table class="table table-striped table-bordered table-hover" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th width="20%">权限模块</th>
+                        <th width="80%">权限名称</th>
+                    </tr></thead>
+                    <tbody>
+                    <foreach name="list" item="vo">
+                    <tr>
+                        <td ><input class="one" type="checkbox" name="nids[]" value="{$key}" style="float: left;">&nbsp;&nbsp;{$key}</td>
+                        <td>
+                          <foreach name="vo" item="li">
+                          <input class="two" type="checkbox" name="nid[]" value="{$li.id}" >&nbsp;&nbsp;{$li.name}&nbsp;&nbsp;
+                          </foreach>
+                        </td> 
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
                   </dd>
                 </dl><br/>
                 <dd>
@@ -31,21 +53,19 @@
                 </dd>
               </div>
               <form/>
-              <!--管理员权限选中-->
-              <script type="text/javascript">
-                var username = $("#username").val();
-                $.ajax({
-                  type: 'POST',
-                  url: "{:U('User/auth')}",
-                  data: {"username":username},
-                  dataType: "json",
-                  success: function(){
-
-                  },
-                });
-              </script>
             </div>
             <!--/.box-->
           </div><!-- /.page-content -->
         </div><!-- /.main-content -->
 <include file="Layout:footer" />
+<script type="text/javascript">
+  $(function(){
+    $(".one").click(function(){
+      if($(".one").is(":checked")){
+        $(this).parent().next().children().attr('checked','checked');
+      }else{
+        $(this).parent().next().children().removeAttr('checked');
+      }
+    });
+  })
+</script>

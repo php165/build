@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>帮你修后台管理系统</title>
+<title>金玉海和后台管理系统</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
     <div class="navbar-container">
         <div class="navbar-header pull-left"> 
             <a href="<?php echo U('Index/index');?>" class="navbar-brand"> 
-                <small>帮你修管理后台 </small>
+                <small>金玉海和管理后台 </small>
             </a>
          </div><!-- /.navbar-header -->
         <div class="navbar-header pull-right">
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 
-                <li <?php if(in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if((!empty($_SESSION['nodelist']['User']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">管理员管理 </span>
@@ -69,123 +69,56 @@
                         <li> <a href="<?php echo U('User/index');?>"> <i class="icon-double-angle-right"></i> 管理员列表 </a> </li>
                         <li> <a href="<?php echo U('User/add');?>"> <i class="icon-double-angle-right"></i> 添加管理员 </a> </li>
                     </ul>
-
                 </li>
 
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="#" class="dropdown-toggle" >
+                <li <?php if((!empty($_SESSION['nodelist']['Role']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
                         <i class="icon-group"></i>
-                        <span class="menu-text">古建新闻管理</span>
+                        <span class="menu-text">角色管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('News/index');?>">
-                            <i class="icon-double-angle-right"></i>
-                            古建新闻列表
+                        <li> <a href="<?php echo U('Role/index');?>"> <i class="icon-double-angle-right"></i> 角色列表 </a> </li>
+                        <li> <a href="<?php echo U('Role/add');?>"> <i class="icon-double-angle-right"></i> 添加角色 </a> </li>
+                    </ul>
+                </li>
 
-                        </a>
+                <li <?php if((!empty($_SESSION['nodelist']['Article']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">内容管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Article/index');?>"> <i class="icon-double-angle-right"></i> 内容列表 </a> </li>
+                        <li> <a href="<?php echo U('Article/add');?>"> <i class="icon-double-angle-right"></i> 添加内容 </a> </li>
+                    </ul>
+                </li>
 
-                        </li>
-                        <li> <a href="<?php echo U('News/add');?>"><i class="icon-double-angle-right"></i>添加古建新闻</a></li>
-
+                <li <?php if((!empty($_SESSION['nodelist']['Type']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">分类管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Type/index');?>"> <i class="icon-double-angle-right"></i> 分类列表 </a> </li>
+                        <li> <a href="<?php echo U('Type/add');?>"> <i class="icon-double-angle-right"></i> 添加分类 </a> </li>
                     </ul>
                 </li>
                 
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建百科管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
-                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建保护管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Protect/index');?>"> <i class="icon-double-angle-right"></i> 古建保护列表 </a> </li>
-                        <li> <a href="<?php echo U('Protect/add');?>"> <i class="icon-double-angle-right"></i> 添加古建保护文章 </a> </li>
-                    </ul>
-                </li>
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建欣赏管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Cyclopedia/index');?>"> <i class="icon-double-angle-right"></i> 古建欣赏列表 </a> </li>
-                        <li> <a href="<?php echo U('Cyclopedia/add');?>"> <i class="icon-double-angle-right"></i> 添加古建欣赏集 </a> </li>
-                    </ul>
-                </li>
-                <li <?php if(in_array(3,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建图库管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Pic/index');?>"> <i class="icon-double-angle-right"></i> 古建图库列表 </a> </li>
-                        <li> <a href="<?php echo U('Pic/add');?>"> <i class="icon-double-angle-right"></i> 添加古建图库集 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(4,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建视频管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Video/index');?>"> <i class="icon-double-angle-right"></i> 古建视频列表 </a> </li>
-                        <li> <a href="<?php echo U('Video/add');?>"> <i class="icon-double-angle-right"></i> 添加古建视频 </a> </li>
-                    </ul>
-
-                </li>
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Admin/index');?>" >
-                        <i class="icon-user"></i>
-                        <span class="menu-text">管理员管理</span>
-
-                    </a>
-
-                </li> -->
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) || in_array(4,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Finance/index');?>">
-                        <i class="icon-magic"></i>
-                        <span class="menu-text">财务管理</span>
-                    </a>
-
-                </li> -->
-                <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Set/setBase');?>"  class="dropdown-toggle">
+                <li <?php if((!empty($_SESSION['nodelist']['Set'])) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a href="#"  class="dropdown-toggle">
                         <i class="icon-cogs"></i>
                         <span class="menu-text">系统设置 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
-                    <!-- <ul class="submenu">
-                        <li> <a href="<?php echo U('Set/setBase');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setDeploy');?>"> <i class="icon-double-angle-right"></i> 系统设置 </a> </li>
-                        <!-- <li> <a href="<?php echo U('Set/setRank');?>"> <i class="icon-double-angle-right"></i> 等级设置 </a> </li> -->
+                   <ul class="submenu">
+                        <li> <a href="<?php echo U('Set/index');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
+                        <li> <a href="<?php echo U('Set/addperson');?>"> <i class="icon-double-angle-right"></i> 联系人设置 </a> </li>
+                        <li> <a href="<?php echo U('Pic/index');?>"> <i class="icon-double-angle-right"></i> 轮播图设置 </a> </li>
                         <!-- <li> <a href="<?php echo U('Set/setCash');?>"> <i class="icon-double-angle-right"></i> 提现设置 </a> </li> -->
-
-                       <!--  <li>
-                            <a href="<?php echo U('Set/setPay');?>">
-                            <i class="icon-double-angle-right"></i>
-
-                              <span>支付方式</span>
-
-                            </a>
-
-                        </li> -->
-                    <!-- </ul> --> 
+                    </ul>
                 </li>
             </ul>
        <!-- /.nav-list -->
@@ -219,8 +152,8 @@
                             <i class="icon-calendar"></i>
                         </span>
                         <span class="indexKRight">
-                            <b><?php echo ($vo["account"]); ?></b>
-                            当日充值金额
+                            <b><?php echo ($daynum); ?></b>
+                            当日新增文章
                         </span>
                     </li>
                     <li class="greenBg">
@@ -228,11 +161,11 @@
                             <i class="icon-bar-chart"></i>
                         </span>
                         <span class="indexKRight">
-                            <b><?php echo ($vo["pay"]); ?></b>
-                            当日交易金额
+                            <b><?php echo ($daymonth); ?></b>
+                            当月新增文章
                         </span>
                     </li>
-                    <li class="redBg">
+                    <!-- <li class="redBg">
                         <span class="icon-circle indexKLeft">
                             <i class="icon-group"></i>
                         </span>
@@ -249,9 +182,9 @@
                             <b><?php echo ($vo["payvip"]); ?></b>
                             当日激活数
                         </span>
-                    </li>
+                    </li> -->
                 </ul>
-                <div class="indexTable">
+                <!-- <div class="indexTable">
                     <div class="indexTableRight">
                         <h4 class="indexTableTit">
                             <i class="icon-reorder blue"></i>
@@ -308,7 +241,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
               </div>
             </div>
                 <!--/.box-->

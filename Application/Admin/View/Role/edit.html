@@ -1,0 +1,29 @@
+<include file="Layout:header" />
+        <div class="main-content">
+          <div class="page-content">
+            <div class="row">
+              <div class="page-content box">
+              	<div class="box-title margin_bot_20">
+                  	<div class="span10">
+                    <h4><span style="float:right;"><a href='__URL__/index'>返回</a></span></h4>
+                <form method="post" action="__URL__/update/id/{$res.id}">     
+                <dl class="zc_dl">
+                  <dt>角色名：</dt>
+                  <dd>
+                    <span style="color:red">*</span>&nbsp;
+                    <input type="text" name="role"  value="{$res.role}" class="zc_btn" placeholder="请输入用户名" valid='required|regexp|limit' regexp="^[a-zA-Z0-9_]+$" min="6" max="20" errmsg="用户名必填|用户名只能是a-z并包含0-9|用户名长度必须在6-20之间"  />
+                  </dd>
+                </dl><br/>
+                
+                <dd>
+                  <span style="color:red">*</span>&nbsp;
+                  <input type="submit" class="zc_btn" value="修改"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="reset" class="zc_btn" value="重置"  />
+                </dd>
+              </div>
+              <form/>
+            </div>
+            <!--/.box-->
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+<include file="Layout:footer" />

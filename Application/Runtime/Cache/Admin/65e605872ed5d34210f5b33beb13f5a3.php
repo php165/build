@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>帮你修后台管理系统</title>
+<title>金玉海和后台管理系统</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
     <div class="navbar-container">
         <div class="navbar-header pull-left"> 
             <a href="<?php echo U('Index/index');?>" class="navbar-brand"> 
-                <small>帮你修管理后台 </small>
+                <small>金玉海和管理后台 </small>
             </a>
          </div><!-- /.navbar-header -->
         <div class="navbar-header pull-right">
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 
-                <li <?php if(in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if((!empty($_SESSION['nodelist']['User']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a class="dropdown-toggle">
                         <i class="icon-group"></i>
                         <span class="menu-text">管理员管理 </span>
@@ -69,100 +69,55 @@
                         <li> <a href="<?php echo U('User/index');?>"> <i class="icon-double-angle-right"></i> 管理员列表 </a> </li>
                         <li> <a href="<?php echo U('User/add');?>"> <i class="icon-double-angle-right"></i> 添加管理员 </a> </li>
                     </ul>
-
                 </li>
 
-                <li <?php if(in_array(2,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="#" class="dropdown-toggle" >
+                <li <?php if((!empty($_SESSION['nodelist']['Role']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
                         <i class="icon-group"></i>
-                        <span class="menu-text">古建新闻管理</span>
+                        <span class="menu-text">角色管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
-                        <li> <a href="<?php echo U('News/index');?>">
-                            <i class="icon-double-angle-right"></i>
-                            古建新闻列表
+                        <li> <a href="<?php echo U('Role/index');?>"> <i class="icon-double-angle-right"></i> 角色列表 </a> </li>
+                        <li> <a href="<?php echo U('Role/add');?>"> <i class="icon-double-angle-right"></i> 添加角色 </a> </li>
+                    </ul>
+                </li>
 
-                        </a>
+                <li <?php if((!empty($_SESSION['nodelist']['Article']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">内容管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Article/index');?>"> <i class="icon-double-angle-right"></i> 内容列表 </a> </li>
+                        <li> <a href="<?php echo U('Article/add');?>"> <i class="icon-double-angle-right"></i> 添加内容 </a> </li>
+                    </ul>
+                </li>
 
-                        </li>
-                        <li> <a href="<?php echo U('News/add');?>"><i class="icon-double-angle-right"></i>添加古建新闻</a></li>
-
+                <li <?php if((!empty($_SESSION['nodelist']['Type']))): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                    <a class="dropdown-toggle">
+                        <i class="icon-group"></i>
+                        <span class="menu-text">分类管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li> <a href="<?php echo U('Type/index');?>"> <i class="icon-double-angle-right"></i> 分类列表 </a> </li>
+                        <li> <a href="<?php echo U('Type/add');?>"> <i class="icon-double-angle-right"></i> 添加分类 </a> </li>
                     </ul>
                 </li>
                 
-                <li <?php if(in_array(3,$_SESSION['rid']) || in_array(1,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建百科管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Media/index');?>"> <i class="icon-double-angle-right"></i> 古建百科列表 </a> </li>
-                        <li> <a href="<?php echo U('Media/add');?>"> <i class="icon-double-angle-right"></i> 添加古建百科 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建图库管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Word/index');?>"> <i class="icon-double-angle-right"></i> 古建图库列表 </a> </li>
-                        <li> <a href="<?php echo U('Word/add');?>"> <i class="icon-double-angle-right"></i> 添加古建图库 </a> </li>
-                    </ul>
-
-                </li>
-                <li <?php if(in_array(1,$_SESSION['rid']) || in_array(2,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span class="menu-text">古建视频管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Notice/index');?>"> <i class="icon-double-angle-right"></i> 古建视频列表 </a> </li>
-                        <li> <a href="<?php echo U('Notice/add');?>"> <i class="icon-double-angle-right"></i> 添加古建视频 </a> </li>
-                    </ul>
-
-                </li>
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Admin/index');?>" >
-                        <i class="icon-user"></i>
-                        <span class="menu-text">管理员管理</span>
-
-                    </a>
-
-                </li> -->
-                <!-- <li <?php if(in_array(1,$_SESSION['rid']) || in_array(4,$_SESSION['rid'])): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
-                    <a href="<?php echo U('Finance/index');?>">
-                        <i class="icon-magic"></i>
-                        <span class="menu-text">财务管理</span>
-                    </a>
-
-                </li> -->
-                <li <?php if(in_array(1,$_SESSION['rid']) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
+                <li <?php if((!empty($_SESSION['nodelist']['Set'])) ): ?>style="display:block" <?php else: ?> style="display:none"<?php endif; ?>>
                     <a href="#"  class="dropdown-toggle">
                         <i class="icon-cogs"></i>
                         <span class="menu-text">系统设置 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
-                    <ul class="submenu">
-                        <li> <a href="<?php echo U('Set/setBase');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setDeploy');?>"> <i class="icon-double-angle-right"></i> 系统设置 </a> </li>
-                        <li> <a href="<?php echo U('Set/setRank');?>"> <i class="icon-double-angle-right"></i> 等级设置 </a> </li>
+                   <ul class="submenu">
+                        <li> <a href="<?php echo U('Set/index');?>"> <i class="icon-double-angle-right"></i> 基本设置 </a> </li>
+                        <li> <a href="<?php echo U('Set/addperson');?>"> <i class="icon-double-angle-right"></i> 联系人设置 </a> </li>
+                        <li> <a href="<?php echo U('Pic/index');?>"> <i class="icon-double-angle-right"></i> 轮播图设置 </a> </li>
                         <!-- <li> <a href="<?php echo U('Set/setCash');?>"> <i class="icon-double-angle-right"></i> 提现设置 </a> </li> -->
-
-                        <li>
-                            <a href="<?php echo U('Set/setPay');?>">
-                            <i class="icon-double-angle-right"></i>
-
-                              <span>支付方式</span>
-
-                            </a>
-
-                        </li>
                     </ul>
                 </li>
             </ul>
@@ -183,7 +138,7 @@
               <div class="page-content box">
               	<div class="box-title margin_bot_20">
                   	<div class="span10">
-                   		<h3><i class="icon-cogs"></i>会员管理 </h3>
+                   		<h3><i class="icon-cogs"></i>管理员管理 </h3>
                   	</div>
                 </div>
                   <form class="form-horizontal" action="/commpany/build/index.php/Admin/User/index" method="get">
@@ -192,8 +147,8 @@
                               <select name="searchtype" id="searchtype" value="<?php echo ($search); ?>" class="input-medium">
                                   <option value="0">--选择搜索类型--</option>
 
-                                  <option <?php if($search == 'id'): ?>selected='selected' <?php else: endif; ?> value="id">会员ID</option>
-                                  <option <?php if($search == 'username'): ?>selected='selected' <?php else: endif; ?> value="username">用户名</option>
+                                  <!-- <option <?php if($search == 'role'): ?>selected='selected' <?php else: endif; ?> value="role">管理员权限</option> -->
+                                  <option <?php if($search == 'username'): ?>selected='selected' <?php else: endif; ?> value="username">管理员名称</option>
 
                               </select>
                           </label>
@@ -201,6 +156,9 @@
                               <input type="text" name="content" value="<?php echo ($content); ?>" class="input-medium">
                               <button type="submit" class="btn btn-sm btn-primary">搜索</button>
                           </div>
+                          <div align="right" style="margin-bottom:10px;">
+                                  <a href="<?php echo U('User/add');?>" class="btn btn-primary btn-sm"><i class="icon-plus"></i>添加管理员</a>
+                              </div>
                       </div>
                   </form>
                 <div class="tableHead">
@@ -208,8 +166,7 @@
                         <thead>
                             <tr>
                                 <th style="width:5%;">ID</th>
-                                <th style="width:5%;">用户名</th>
-                                <th style="width:5%;">权限</th>
+                                <th style="width:5%;">管理员名称</th>
                                 <th style="width:5%;">添加时间</th>
                                 <th style="width:5%;">最近登录时间</th>
                                 <th style="width:5%;">最近登录IP </th>
@@ -225,7 +182,6 @@
                          <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
                             <td id="uid"><?php echo ($vo["id"]); ?></td>
                             <td><?php echo ($vo["username"]); ?></td>
-                            <td><?php echo ($vo["email"]); ?></td>
                             <td><?php echo ($vo["addtime"]); ?></td>
                             <td><?php echo ($vo["updatetime"]); ?></td>
                             <td><?php echo ($vo["loginip"]); ?></td>
@@ -240,12 +196,12 @@
                                   <?php default: endswitch;?>
                             </td>
                             <td class="green information">
-                                <a href="/commpany/build/index.php/Admin/User/edit/id/<?php echo ($vo["id"]); ?>" class="green cancel">修改权限</a><br/>
+                                <a href="/commpany/build/index.php/Admin/User/edit/id/<?php echo ($vo["id"]); ?>" class="green cancel">修改权限</a>
                                 <a href="/commpany/build/index.php/Admin/User/status/id/<?php echo ($vo["id"]); ?>" class="green cancel">
                                       <?php if(($vo["status"] == 1) ): ?>启用
                                       <?php else: ?>禁用<?php endif; ?>
-                                </a><br/>
-                                <a href="/commpany/build/index.php/Admin/User/del/id/<?php echo ($vo["id"]); ?>" class="green cancel">删除</a>
+                                </a>
+                                <a onclick="return confirm('您确定要删除吗')" href="/commpany/build/index.php/Admin/User/del/id/<?php echo ($vo["id"]); ?>" class="green cancel">删除</a>
                             </td>
                         </tr><?php endforeach; endif; ?>
                     </table>

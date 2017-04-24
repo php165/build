@@ -1,0 +1,87 @@
+<include file="Layout:header" />
+        <div class="main-content">
+          <div class="page-content">
+            <div class="row">
+              <div class="page-content box">
+              	<div class="box-title margin_bot_20">
+                  	<div class="span10">
+                   		<h3><i class="icon-cogs"></i>角色管理 </h3>
+                  	</div>
+                </div>
+                  <form class="form-horizontal" action="__URL__/index" method="get">
+                      <div class="form-group">
+                          <label class="control-label"  style="padding-top:0; margin-right:10px;">
+                              <select name="searchtype" id="searchtype" value="{$search}" class="input-medium">
+                                  <option value="0">--选择搜索类型--</option>
+
+                                  <!-- <option <if condition="$search == 'id'"> selected='selected' <else/></if> value="id">角色ID</option> -->
+                                  <option <if condition="$search == 'role'"> selected='selected' <else/></if> value="role">角色名</option>
+
+                              </select>
+                          </label>
+                          <div class="controls pull-left">
+                              <input type="text" name="content" value="{$content}" class="input-medium">
+                              <button type="submit" class="btn btn-sm btn-primary">搜索</button>
+                          </div>
+                          <div align="right" style="margin-bottom:10px;">
+                                  <a href="{:U('Role/add')}" class="btn btn-primary btn-sm"><i class="icon-plus"></i>添加角色</a>
+                              </div>
+                      </div>
+                  </form>
+                <div class="tableHead">
+                    <table class="table table_img table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;">ID</th>
+                                <th style="width:5%;">角色名</th>
+                                <th style="width:5%;">添加时间</th>
+                                <th style="width:5%;">状态</th>
+                                <th style="width:5%;">操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="table_hy">
+                    <table class="table table_img table-striped table-bordered  table-hover">
+                         <foreach name="list" item="vo" >
+                         <tr>
+                            <td id="uid">{$vo.id}</td>
+                            <td>{$vo.role}</td>
+                            <td>{$vo.addtime}</td> 
+                            <td>
+                                <switch name="vo.status" >
+                                  <case value="0">已启用</case>
+                                  <case value="1">未启用</case>
+                                  <default />
+                                </switch>
+                            </td>
+                            <td class="green information">
+                                <!-- <a href="__APP__/Admin/Role/edit/id/{$vo.id}" class="green cancel">修改</a> -->
+                                <a href="__APP__/Admin/Role/status/id/{$vo.id}" class="green cancel">
+                                      <if condition="($vo.status eq 1) "> 启用
+                                      <else />禁用
+                                      </if>
+                                </a>
+                                <a onclick="return confirm('您确定要删除吗')" href="__APP__/Admin/Role/del/id/{$vo.id}" class="green cancel">删除</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </table>
+                </div> 
+           
+                <ul class="pagination pull-right" style="margin-top:20px; margin-bottom:0;">
+                    {$url}
+                    <!-- <li class="disabled"><a href="#">«</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li> -->
+                </ul>
+              </div>
+            </div>
+            <!--/.box-->
+          </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+<include file="Layout:footer" />
